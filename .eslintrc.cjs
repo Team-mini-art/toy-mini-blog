@@ -30,6 +30,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off', // Missing return type on function
     'react/react-in-jsx-scope': 'off', // 'React' must be in scope when using JSX
+    'import/no-absolute-path': 'off', // Do not import modules using an absolute path
   },
   settings: {
     react: {
