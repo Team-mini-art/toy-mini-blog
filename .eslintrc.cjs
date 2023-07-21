@@ -1,4 +1,5 @@
 // npx eslint 'src/**' --fix
+// npx eslint 'src/**/*.{ts,tsx}' --fix
 module.exports = {
   env: {
     browser: true,
@@ -26,7 +27,10 @@ module.exports = {
     project: ['./tsconfig.json'], // 2. Error while loading rule '@typescript-eslint/dot-notation'
   },
   plugins: ['react'],
-  rules: {},
+  rules: {
+    '@typescript-eslint/explicit-function-return-type': 'off', // Missing return type on function
+    'react/react-in-jsx-scope': 'off', // 'React' must be in scope when using JSX
+  },
   settings: {
     react: {
       version: 'detect', // 1. React version not specified in eslint-plugin-react settings.
