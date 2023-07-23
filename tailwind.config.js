@@ -4,11 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        basic: '#ecebef',
-      },
-      boxShadow: {
-        basic:
-          '1rem 1rem 3rem rgb(174, 174, 192, 0.5), -1rem -1rem 3rem rgba(255, 255, 255);',
+        back: '#ebecf0',
+        title: '#babecc',
+        basic: '#61677c',
       },
     },
   },

@@ -5,6 +5,42 @@
 html {
   font-size: 62.5%;
 }
-/* body {
-  @apply bg-basic;
-} */
+body {
+  @apply bg-back;
+}
+* {
+  @apply outline-0;
+}
+
+@layer components {
+  .container-wrap {
+    @apply h-screen flex justify-center items-center;
+  }
+  .container-basic {
+    @apply py-16 w-[37.5rem] /* h-[66.7rem] */;
+    @apply bg-back rounded-3xl;
+    @apply shadow-[0.6rem_0.6rem_1.2rem_#fff,_-0.6rem_-0.6rem_1.2rem_#babecc];
+  }
+  .container-title {
+    @apply text-5xl font-bold text-title;
+    @apply drop-shadow-[0.1rem_0.1rem_0.1rem_#fff];
+  }
+
+  .common-input {
+    text-shadow: 0.1rem 0.1rem 0 #fff;
+    @apply p-6 w-full;
+    @apply text-[1.6rem] bg-back rounded-full;
+    @apply transition ease-in;
+    @apply shadow-[inset_0.2rem_0.2rem_0.5rem_#babecc,_inset_-0.5rem_-0.5rem_10px_#fff];
+    @apply hover:shadow-[inset_0.1rem_0.1rem_0.2rem_#babecc,_inset_-0.1rem_-0.1rem_0.2rem_#fff];
+  }
+
+  .common-button {
+    @apply block p-6 w-52;
+    @apply text-3xl font-semibold text-basic rounded-full;
+    @apply transition ease-in;
+    @apply shadow-[-0.5rem_-0.5rem_2rem_#fff,_0.5rem_0.5rem_2rem_#babecc];
+    @apply hover:shadow-[-0.2rem_-0.2rem_0.5rem_#fff,_0.2rem_0.2rem_0.5rem_#babecc];
+    @apply active:shadow-[inset_1px_1px_2px_#babecc,_inset_-1px_-1px_2px_#fff];
+  }
+}
