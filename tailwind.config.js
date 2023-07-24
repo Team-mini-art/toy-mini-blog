@@ -7,6 +7,8 @@ export default {
         back: '#ebecf0',
         title: '#babecc',
         basic: '#61677c',
+        point: '#ae93ea',
+        // point: '#a955ff',
       },
     },
   },

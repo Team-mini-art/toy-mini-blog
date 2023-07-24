@@ -37,5 +37,5 @@ module.exports = {
       version: 'detect', // 1. React version not specified in eslint-plugin-react settings.
     },
   },
-  ignorePatterns: ['.eslintrc.cjs', 'tailwind.config.js'], // 3. Parsing error: ESLint was configured to run on `<tsconfigRootDir>/.eslintrc.cjs` using `parserOptions.project`
+  ignorePatterns: ['.eslintrc.cjs', 'tsconfig.json', 'tailwind.config.js'], // 3. Parsing error: ESLint was configured to run on `<tsconfigRootDir>/.eslintrc.cjs` using `parserOptions.project`
 };
