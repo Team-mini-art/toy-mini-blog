@@ -11,7 +11,10 @@ export default function Login() {
     confirm: '',
   });
 
-  const formRef = useRef([]);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const confirmRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -47,17 +50,18 @@ export default function Login() {
               value={form.username}
               placeholder="Enter Username"
               onChange={handleInputChange}
-              ref={(el) => (formRef.current[0] = el)}
+              ref={nameRef}
             >
               Username
             </Input>
-            {/* <Input
+            <Input
               labelClass="block mt-7 w-full text-xl text-basic"
               inputClass="mt-2 rounded-2xl"
               name="email"
               value={form.email}
               placeholder="Enter Email"
               onChange={handleInputChange}
+              ref={emailRef}
             >
               Email
             </Input>
@@ -68,6 +72,7 @@ export default function Login() {
               value={form.password}
               placeholder="Enter Password"
               onChange={handleInputChange}
+              ref={passwordRef}
             >
               Password
             </Input>
@@ -78,9 +83,10 @@ export default function Login() {
               value={form.confirm}
               placeholder="Enter Confirm Password"
               onChange={handleInputChange}
+              ref={confirmRef}
             >
               Confirm Password
-            </Input> */}
+            </Input>
             <Button
               addClass="mt-16 flex justify-evenly items-center text-point"
               type="submit"

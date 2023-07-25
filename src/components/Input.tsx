@@ -6,10 +6,10 @@ interface Props {
   placeholder: string;
   children?: React.ReactNode;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  ref?: React.RefObject<HTMLInputElement>;
+  ref: (ref: HTMLInputElement) => void;
 }
 
-export default function TextField({
+export default function Input({
   labelClass,
   inputClass = '',
   name,
