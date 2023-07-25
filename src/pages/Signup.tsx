@@ -10,20 +10,37 @@ export default function Login() {
     password: '',
     confirm: '',
   });
+  const [error, setError] = useState('');
 
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmRef = useRef<HTMLInputElement>(null);
 
+  const refs: Record<string, React.RefObject<HTMLInputElement>> = {
+    username: nameRef,
+    email: emailRef,
+    password: passwordRef,
+    confirm: confirmRef,
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+    error.length !== 0 && setError('');
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(validate(form));
+
+    const validation = validate(form);
+    if (validation != null) {
+      const key = validation[0];
+      refs[key].current?.focus();
+      setError(key);
+    } else {
+      console.log('ok');
+    }
   };
 
   const validate = (value: Record<string, string>) => {
@@ -50,7 +67,8 @@ export default function Login() {
               value={form.username}
               placeholder="Enter Username"
               onChange={handleInputChange}
-              ref={nameRef}
+              refs={nameRef}
+              error={error}
             >
               Username
             </Input>
@@ -61,7 +79,8 @@ export default function Login() {
               value={form.email}
               placeholder="Enter Email"
               onChange={handleInputChange}
-              ref={emailRef}
+              refs={emailRef}
+              error={error}
             >
               Email
             </Input>
@@ -72,7 +91,8 @@ export default function Login() {
               value={form.password}
               placeholder="Enter Password"
               onChange={handleInputChange}
-              ref={passwordRef}
+              refs={passwordRef}
+              error={error}
             >
               Password
             </Input>
@@ -83,12 +103,13 @@ export default function Login() {
               value={form.confirm}
               placeholder="Enter Confirm Password"
               onChange={handleInputChange}
-              ref={confirmRef}
+              refs={confirmRef}
+              error={error}
             >
               Confirm Password
             </Input>
             <Button
-              addClass="mt-16 flex justify-evenly items-center text-point"
+              addClass="mt-16 flex justify-evenly items-center text-purple-500"
               type="submit"
             >
               Sign Up <LuLogIn className="ml-3" />

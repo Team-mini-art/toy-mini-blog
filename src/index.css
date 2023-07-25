@@ -36,6 +36,7 @@ body {
     @apply transition ease-in;
     @apply shadow-[inset_0.2rem_0.2rem_0.5rem_#babecc,_inset_-0.5rem_-0.5rem_10px_#fff];
     @apply hover:shadow-[inset_0.1rem_0.1rem_0.2rem_#babecc,_inset_-0.1rem_-0.1rem_0.2rem_#fff];
+    @apply focus:shadow-[inset_0.1rem_0.1rem_0.2rem_#babecc,_inset_-0.1rem_-0.1rem_0.2rem_#fff];
   }
 
   .common-button {
