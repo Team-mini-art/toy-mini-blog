@@ -11,6 +11,7 @@ export default function Login() {
     confirm: '',
   });
   const [error, setError] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -34,6 +35,7 @@ export default function Login() {
     e.preventDefault();
 
     const validation = validate(form);
+    // console.log(validation);
     if (validation != null) {
       const key = validation[0];
       refs[key].current?.focus();
@@ -45,10 +47,24 @@ export default function Login() {
 
   const validate = (value: Record<string, string>) => {
     const emptyEntry = Object.entries(value).find(([_, val]) => val === '');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const minPasswordLength = 8;
 
+    // 빈 input check
     if (emptyEntry != null) {
       const [emptyKey] = emptyEntry;
       alert(`please enter ${emptyKey}`);
+      // return emptyEntry;
+    }
+
+    // 유효성 검사
+    if (!emailRegex.test(value.email)) {
+      setErrorMessage('Email is not valid');
+      console.log(Object.entries(value));
+    } else if (minPasswordLength < value.password.length) {
+      setErrorMessage(`Must be at least ${minPasswordLength} characters long.`);
+    } else if (value.password !== value.confirm) {
+      setErrorMessage('Passwords do not match');
     }
 
     return emptyEntry;
@@ -67,7 +83,7 @@ export default function Login() {
               value={form.username}
               placeholder="Enter Username"
               onChange={handleInputChange}
-              refs={nameRef}
+              refs={refs}
               error={error}
             >
               Username
@@ -79,7 +95,7 @@ export default function Login() {
               value={form.email}
               placeholder="Enter Email"
               onChange={handleInputChange}
-              refs={emailRef}
+              refs={refs}
               error={error}
             >
               Email
@@ -91,10 +107,10 @@ export default function Login() {
               value={form.password}
               placeholder="Enter Password"
               onChange={handleInputChange}
-              refs={passwordRef}
+              refs={refs}
               error={error}
             >
-              Password
+              Password (8자 이상 작성해주세요.)
             </Input>
             <Input
               labelClass="block mt-7 w-full text-xl text-basic"
@@ -103,11 +119,14 @@ export default function Login() {
               value={form.confirm}
               placeholder="Enter Confirm Password"
               onChange={handleInputChange}
-              refs={confirmRef}
+              refs={refs}
               error={error}
             >
               Confirm Password
             </Input>
+            {errorMessage !== '' && (
+              <p className="mt-3 text-xl text-red-500">{errorMessage}</p>
+            )}
             <Button
               addClass="mt-16 flex justify-evenly items-center text-purple-500"
               type="submit"

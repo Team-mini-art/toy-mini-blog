@@ -21,20 +21,20 @@ export default function Input({
   refs,
   error,
 }: Props) {
-  // console.log(error);
+  console.log(refs);
   return (
     <label className={labelClass}>
       {children}
       <input
         className={`common-input ${inputClass} ${
-          error === name ? 'outline-1 outline-purple-500' : ''
+          error === name ? 'outline-1 outline-purple-400' : ''
         }`}
         type="text"
         name={name}
         value={value}
         placeholder={placeholder}
         onChange={onChange}
-        ref={refs}
+        // ref={refs}
       />
     </label>
   );
