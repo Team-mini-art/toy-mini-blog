@@ -2,8 +2,11 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import { LuLogIn } from 'react-icons/Lu';
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Signup() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     username: '',
     email: '',
@@ -28,20 +31,23 @@ export default function Login() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-    error.length !== 0 && setError('');
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const validation = validate(form);
-    // console.log(validation);
-    if (validation != null) {
+
+    if (validation !== undefined) {
       const key = validation[0];
+      validation[1] === 'empty'
+        ? alert(`Please enter ${key}`)
+        : setErrorMessage(key);
       refs[key].current?.focus();
       setError(key);
     } else {
-      console.log('ok');
+      alert('Sign up is complete.');
+      navigate('/login');
     }
   };
 
@@ -51,20 +57,18 @@ export default function Login() {
     const minPasswordLength = 8;
 
     // 빈 input check
-    if (emptyEntry != null) {
+    if (emptyEntry !== undefined) {
       const [emptyKey] = emptyEntry;
-      alert(`please enter ${emptyKey}`);
-      // return emptyEntry;
+      return [emptyKey, 'empty'];
     }
 
     // 유효성 검사
     if (!emailRegex.test(value.email)) {
-      setErrorMessage('Email is not valid');
-      console.log(Object.entries(value));
-    } else if (minPasswordLength < value.password.length) {
-      setErrorMessage(`Must be at least ${minPasswordLength} characters long.`);
+      return ['email'];
+    } else if (minPasswordLength > value.password.length) {
+      return ['password'];
     } else if (value.password !== value.confirm) {
-      setErrorMessage('Passwords do not match');
+      return ['confirm'];
     }
 
     return emptyEntry;
@@ -91,6 +95,7 @@ export default function Login() {
             <Input
               labelClass="block mt-7 w-full text-xl text-basic"
               inputClass="mt-2 rounded-2xl"
+              type="email"
               name="email"
               value={form.email}
               placeholder="Enter Email"
@@ -103,6 +108,7 @@ export default function Login() {
             <Input
               labelClass="block mt-7 w-full text-xl text-basic"
               inputClass="mt-2 rounded-2xl"
+              type="password"
               name="password"
               value={form.password}
               placeholder="Enter Password"
@@ -115,6 +121,7 @@ export default function Login() {
             <Input
               labelClass="block mt-7 w-full text-xl text-basic"
               inputClass="mt-2 rounded-2xl"
+              type="password"
               name="confirm"
               value={form.confirm}
               placeholder="Enter Confirm Password"
@@ -125,7 +132,7 @@ export default function Login() {
               Confirm Password
             </Input>
             {errorMessage !== '' && (
-              <p className="mt-3 text-xl text-red-500">{errorMessage}</p>
+              <p className="mt-3 text-xl text-red-500">{`Please check your ${errorMessage}`}</p>
             )}
             <Button
               addClass="mt-16 flex justify-evenly items-center text-purple-500"
