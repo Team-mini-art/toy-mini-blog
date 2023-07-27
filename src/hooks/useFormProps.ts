@@ -1,29 +1,23 @@
-import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-export function useForm() {
-  const navigate = useNavigate();
+interface useFormProps {
+  initialValues: Record<string, string>;
+  refs: Record<string, React.RefObject<HTMLInputElement>>;
+  onSubmit: () => void;
+  onErrors: () => void;
+  onSuccess: () => void;
+}
 
-  const [form, setForm] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirm: '',
-  });
+export function useForm({
+  initialValues,
+  refs,
+  onSubmit,
+  onErrors,
+  onSuccess,
+}: useFormProps) {
+  const [form, setForm] = useState(initialValues);
   const [error, setError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-  const nameRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const confirmRef = useRef<HTMLInputElement>(null);
-
-  const refs: Record<string, React.RefObject<HTMLInputElement>> = {
-    username: nameRef,
-    email: emailRef,
-    password: passwordRef,
-    confirm: confirmRef,
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -43,8 +37,13 @@ export function useForm() {
       refs[key].current?.focus();
       setError(key);
     } else {
-      alert('Sign up is complete.');
-      navigate('/login');
+      try {
+        // const result = await onSubmit()
+        // onSuccess(result)
+        onSuccess();
+      } catch (e) {
+        onErrors();
+      }
     }
   };
 
@@ -64,10 +63,15 @@ export function useForm() {
       return ['email'];
     } else if (minPasswordLength > value.password.length) {
       return ['password'];
-    } else if (value.password !== value.confirm) {
+    } else if (
+      value.password !== value.confirm &&
+      value.confirm !== undefined
+    ) {
       return ['confirm'];
     }
 
     return emptyEntry;
   };
+
+  return { handleSubmit, form, handleInputChange, error, errorMessage };
 }

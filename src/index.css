@@ -14,11 +14,13 @@ body {
 
 @layer components {
   .container-wrap {
-    @apply h-screen flex justify-center items-center;
+    @apply px-10;
+    @apply h-screen;
+    @apply flex justify-center items-center;
   }
 
   .container-basic {
-    @apply py-20 w-[37.5rem] /* h-[66.7rem] */;
+    @apply p-20 /* h-[66.7rem] */;
     @apply bg-back rounded-3xl;
     @apply shadow-[inset_0.5rem_0.5rem_1rem_#babecc,_inset_-0.5rem_-0.5rem_1rem_#fff];
     /* @apply shadow-[10px_10px_20px_#babecc,_-10px_-10px_20px_#fff]; */

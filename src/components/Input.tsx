@@ -1,7 +1,7 @@
 interface Props {
   labelClass: string;
   inputClass?: string;
-  type?: 'text' | 'password' | 'email';
+  type?: 'text' | 'password';
   name: string;
   value: string;
   placeholder: string;
