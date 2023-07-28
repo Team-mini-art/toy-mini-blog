@@ -15,20 +15,23 @@ body {
 @layer components {
   .container-wrap {
     @apply px-10;
-    @apply h-screen;
+    @apply min-h-screen;
     @apply flex justify-center items-center;
   }
 
   .container-basic {
-    @apply p-20 /* h-[66.7rem] */;
-    @apply bg-back rounded-3xl;
-    @apply shadow-[inset_0.5rem_0.5rem_1rem_#babecc,_inset_-0.5rem_-0.5rem_1rem_#fff];
-    /* @apply shadow-[10px_10px_20px_#babecc,_-10px_-10px_20px_#fff]; */
+    @apply py-20 px-10 /* h-[66.7rem] */;
+  }
+  .shadow_type1 {
+    @apply rounded-3xl;
+    /* @apply shadow-[inset_0.5rem_0.5rem_1rem_#babecc,_inset_-0.5rem_-0.5rem_1rem_#fff]; */
+    @apply shadow-[1rem_1rem_0px_#bebebe,-1rem_-1rem_0px_#fff];
   }
 
   .container-title {
+    @apply pb-20;
     @apply text-5xl font-bold text-title;
-    @apply drop-shadow-[0.1rem_0.1rem_0.1rem_#fff];
+    @apply drop-shadow-[0.25rem_0.2rem_0_#fff];
   }
 
   .common-input {
@@ -43,10 +46,11 @@ body {
 
   .common-button {
     @apply py-6 px-10;
-    @apply text-3xl font-semibold text-basic rounded-full;
+    @apply text-basic rounded-full;
     @apply transition ease-in;
-    @apply shadow-[-0.5rem_-0.5rem_2rem_#fff,_0.5rem_0.5rem_2rem_#babecc];
-    @apply hover:shadow-[-0.2rem_-0.2rem_0.5rem_#fff,_0.2rem_0.2rem_0.5rem_#babecc];
-    @apply active:shadow-[inset_1px_1px_2px_#babecc,_inset_-1px_-1px_2px_#fff];
+    @apply shadow-[-0.25rem_-0.25rem_0_#fff,_0.25rem_0.25rem_0_#babecc];
+    @apply hover:shadow-[-0.5rem_-0.5rem_0.5rem_#fff,_0.5rem_0.5rem_0.5rem_#babecc];
+    @apply active:shadow-[inset_0.1rem_0.1rem_0.2rem_#babecc,_inset_-0.1rem_-0.1rem_0.2rem_#fff];
+    @apply cursor-pointer;
   }
 }

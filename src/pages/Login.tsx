@@ -46,10 +46,10 @@ export default function Login() {
     });
 
   return (
-    <div className="container-basic w-[37.5rem]">
-      <h1 className="container-title text-center">Log In</h1>
+    <div className="container-basic shadow_type1 w-[37.5rem]">
+      <h1 className="container-title">Log In</h1>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col items-center mt-20">
+        <div className="flex flex-col items-center">
           <Input
             labelClass="w-full text-xl text-basic"
             inputClass="mt-2 rounded-2xl"
@@ -79,7 +79,7 @@ export default function Login() {
             <p className="mt-5 text-xl text-red-500">{`Please check your ${errorMessage}`}</p>
           )}
           <Button
-            addClass="mt-12 flex justify-evenly items-center text-purple-500"
+            addClass="mt-12 flex justify-evenly items-center text-3xl font-semibold text-purple-500"
             type="submit"
           >
             Log In <AiFillLock className="ml-3" />

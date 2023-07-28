@@ -1,10 +1,10 @@
 import ListItem from './ListItem';
 
 export default function List() {
-  const arr = Array(5).fill(0);
+  const arr = Array(10).fill(0);
 
   return (
-    <ul>
+    <ul className="mt-10 shadow_type1">
       {arr.map((_, idx) => {
         return <ListItem key={idx}></ListItem>;
       })}
