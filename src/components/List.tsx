@@ -5,9 +5,9 @@ export default function List() {
 
   return (
     <ul className="mt-10">
-      {arr.map((_, idx) => {
-        return <ListItem key={idx}></ListItem>;
-      })}
+      {arr.map((_, idx) => 
+         <ListItem key={idx}></ListItem>
+      )}
     </ul>
   );
 }
