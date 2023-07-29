@@ -79,7 +79,7 @@ export default function Login() {
             <p className="mt-5 text-xl text-red-500">{`Please check your ${errorMessage}`}</p>
           )}
           <Button
-            addClass="mt-12 flex justify-evenly items-center text-3xl font-semibold text-purple-500"
+            addClass="mt-12 py-6 px-10 flex justify-evenly items-center text-3xl font-semibold text-purple-500"
             type="submit"
           >
             Log In <AiFillLock className="ml-3" />
