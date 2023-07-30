@@ -1,5 +1,6 @@
 import Button from '../components/Button';
 import List from '../components/List';
+import Pagination from '../components/Pagination';
 
 export default function Main() {
   return (
@@ -11,9 +12,7 @@ export default function Main() {
         </div>
         <List />
       </div>
-      <div>
-        <p>페이지네이션</p>
-      </div>
+      <Pagination />
     </div>
   );
 }
