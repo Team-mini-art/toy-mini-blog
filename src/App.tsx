@@ -1,10 +1,12 @@
 import { Outlet } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux'
+import type { RootState } from "./store/store";
 import { decrement, increment, incrementByAmount } from './store/features/counter/counterSlice';
 
+
 export default function App() {
-  const count = useSelector(state => state.counter.value)
+  const count = useSelector((state: RootState) => state.counter.value)
   const dispatch = useDispatch()
   return (
     <>

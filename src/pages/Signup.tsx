@@ -3,10 +3,12 @@ import Button from '../components/Button';
 import { IoMdPersonAdd } from 'react-icons/Io';
 import { useRef } from 'react';
 import { useForm } from '../hooks/useFormProps';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { postAuthSignup } from '../api/auth';
+import { type SignupRes } from '../types/authType';
 
 export default function Signup() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -14,7 +16,7 @@ export default function Signup() {
   const confirmRef = useRef<HTMLInputElement>(null);
 
   const refs: Record<string, React.RefObject<HTMLInputElement>> = {
-    username: nameRef,
+    nickname: nameRef,
     email: emailRef,
     password: passwordRef,
     confirm: confirmRef,
@@ -23,31 +25,22 @@ export default function Signup() {
   const { handleSubmit, form, handleInputChange, error, errorMessage } =
     useForm({
       initialValues: {
-        username: '',
+        nickname: '',
         email: '',
         password: '',
         confirm: '',
       },
       refs,
-      onSubmit: /* async */ () => {
-        // const result = await axios.post(
-        //   `${GITHUB_API}/repos/art11010/github-issue-react/issues`,
-        //   inputValues,
-        //   {
-        //     headers: {
-        //       Authorization: process.env.REACT_APP_GITHUB_TOKEN,
-        //       'Content-Type': 'application/json',
-        //     },
-        //   },
-        // );
-        // return result;
+      onSubmit: async (): Promise<SignupRes> => {
+        const result = await postAuthSignup(form);
+        return result?.data;
       },
       onErrors: () => {
         console.log('error');
       },
       onSuccess: () => {
         alert('Sign up is complete.');
-        navigate('/login');
+        // navigate('/login');
       },
     });
 
@@ -59,14 +52,14 @@ export default function Signup() {
           <Input
             labelClass="w-full text-xl text-basic"
             inputClass="mt-2 rounded-2xl"
-            name="username"
-            value={form.username}
-            placeholder="Enter Username"
+            name="nickname"
+            value={form.nickname}
+            placeholder="Enter nickname"
             onChange={handleInputChange}
             refs={refs}
             error={error}
           >
-            Username
+            Nickname
           </Input>
           <Input
             labelClass="mt-7 w-full text-xl text-basic"
@@ -91,7 +84,7 @@ export default function Signup() {
             refs={refs}
             error={error}
           >
-            Password (8자 이상 작성해주세요.)
+            Password {/* (8자 이상 작성해주세요.) */}
           </Input>
           <Input
             labelClass="mt-7 w-full text-xl text-basic"
