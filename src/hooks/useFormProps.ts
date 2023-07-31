@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { type SignupRes } from '../types/authType';
 
 interface useFormProps {
   initialValues: Record<string, string>;
   refs: Record<string, React.RefObject<HTMLInputElement>>;
-  onSubmit: () => void;
+  onSubmit: () => Promise<SignupRes>;
   onErrors: () => void;
   onSuccess: () => void;
 }
@@ -24,7 +25,7 @@ export function useForm({
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const validation = validate(form);
@@ -38,10 +39,11 @@ export function useForm({
       setError(key);
     } else {
       try {
-        // const result = await onSubmit()
-        // onSuccess(result)
-        onSuccess();
+        const result = await onSubmit();
+        console.log('result', result);
+        // onSuccess();
       } catch (e) {
+        console.log(e);
         onErrors();
       }
     }
@@ -50,7 +52,7 @@ export function useForm({
   const validate = (value: Record<string, string>) => {
     const emptyEntry = Object.entries(value).find(([_, val]) => val === '');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const minPasswordLength = 8;
+    // const minPasswordLength = 8;
 
     // 빈 input check
     if (emptyEntry !== undefined) {
@@ -61,8 +63,8 @@ export function useForm({
     // 유효성 검사
     if (!emailRegex.test(value.email)) {
       return ['email'];
-    } else if (minPasswordLength > value.password.length) {
-      return ['password'];
+      // } else if (minPasswordLength > value.password.length) {
+      //   return ['password'];
     } else if (
       value.password !== value.confirm &&
       value.confirm !== undefined

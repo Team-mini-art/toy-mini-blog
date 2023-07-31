@@ -1,17 +1,17 @@
 import axiosCustom from './index';
 
-export const getAuthLogin = async () => {
+export const postAuthSignup = async (signupForm: Record<string, string>) => {
   try {
-    // const result = await axios.get(
-    //   `${GITHUB_API}/repos/art11010/github-issue-react/issues`,
-    //   {
-    //     headers: {
-    //       Authorization: process.env.REACT_APP_GITHUB_TOKEN,
-    //       'Content-Type': 'application/json',
-    //     },
-    //   },
-    // );
-    const res = await axiosCustom.post('/login');
+    const res = await axiosCustom.post('/api/signup', signupForm);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postAuthLogin = async (loginForm: Record<string, string>) => {
+  try {
+    const res = await axiosCustom.post('/api/login', loginForm);
     console.log(res);
     // return result;
   } catch (error) {

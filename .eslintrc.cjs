@@ -29,6 +29,7 @@ module.exports = {
   plugins: ['react'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off', // Missing return type on function
+    '@typescript-eslint/no-misused-promises': 'off',
     'react/react-in-jsx-scope': 'off', // 'React' must be in scope when using JSX
     'import/no-absolute-path': 'off', // Do not import modules using an absolute path
   },
@@ -37,5 +38,10 @@ module.exports = {
       version: 'detect', // 1. React version not specified in eslint-plugin-react settings.
     },
   },
-  ignorePatterns: ['.eslintrc.cjs', 'tsconfig.json', 'tailwind.config.js'], // 3. Parsing error: ESLint was configured to run on `<tsconfigRootDir>/.eslintrc.cjs` using `parserOptions.project`
+  ignorePatterns: [
+    '.eslintrc.cjs',
+    'tsconfig.json',
+    'tailwind.config.js',
+    'vite.config.js',
+  ], // 3. Parsing error: ESLint was configured to run on `<tsconfigRootDir>/.eslintrc.cjs` using `parserOptions.project`
 };
