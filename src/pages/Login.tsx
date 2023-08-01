@@ -2,11 +2,17 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import { AiFillLock } from 'react-icons/Ai';
 import { useRef } from 'react';
-import { useForm } from '../hooks/useFormProps';
-import { useNavigate } from 'react-router-dom';
+import { useForm } from '../hooks/useFormHook';
+// import { useNavigate } from 'react-router-dom';
+import { postAuthLogin } from '../api/auth';
+import { type LoginRes } from '../types/authType';
+import { login } from '../store/features/auth/authSlice';
+import { useDispatch } from 'react-redux';
 
 export default function Login() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -23,25 +29,25 @@ export default function Login() {
         password: '',
       },
       refs,
-      onSubmit: /* async */ () => {
-        // const result = await axios.post(
-        //   `${GITHUB_API}/repos/art11010/github-issue-react/issues`,
-        //   inputValues,
-        //   {
-        //     headers: {
-        //       Authorization: process.env.REACT_APP_GITHUB_TOKEN,
-        //       'Content-Type': 'application/json',
-        //     },
-        //   },
-        // );
-        // return result;
+      onSubmit: async (): Promise<LoginRes> => {
+        const result = await postAuthLogin(form);
+        return result;
       },
       onErrors: () => {
         console.log('error');
       },
-      onSuccess: () => {
-        alert('Log In is complete.');
-        navigate('/');
+      onSuccess: (userInfo) => {
+        // TODO if 지우기
+        if ('tokenInfo' in userInfo) {
+          const {
+            nickname,
+            email,
+            tokenInfo: { accessToken, refreshToken },
+          } = userInfo;
+          alert('Log In is complete.');
+          dispatch(login({ nickname, email, accessToken, refreshToken }));
+          // navigate('/');
+        }
       },
     });
 

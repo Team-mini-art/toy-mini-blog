@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { type SignupRes } from '../types/authType';
+import { type SignupRes, type LoginRes } from '../types/authType';
 
 interface useFormProps {
   initialValues: Record<string, string>;
   refs: Record<string, React.RefObject<HTMLInputElement>>;
-  onSubmit: () => Promise<SignupRes>;
+  onSubmit: () => Promise<SignupRes | LoginRes>;
   onErrors: () => void;
-  onSuccess: () => void;
+  onSuccess: (e: SignupRes | LoginRes) => void;
 }
 
 export function useForm({
@@ -40,8 +40,7 @@ export function useForm({
     } else {
       try {
         const result = await onSubmit();
-        console.log('result', result);
-        // onSuccess();
+        onSuccess(result);
       } catch (e) {
         console.log(e);
         onErrors();
