@@ -2,13 +2,13 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import { IoMdPersonAdd } from 'react-icons/Io';
 import { useRef } from 'react';
-import { useForm } from '../hooks/useFormProps';
-// import { useNavigate } from 'react-router-dom';
+import { useForm } from '../hooks/useFormHook';
+import { useNavigate } from 'react-router-dom';
 import { postAuthSignup } from '../api/auth';
 import { type SignupRes } from '../types/authType';
 
 export default function Signup() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -33,14 +33,14 @@ export default function Signup() {
       refs,
       onSubmit: async (): Promise<SignupRes> => {
         const result = await postAuthSignup(form);
-        return result?.data;
+        return result;
       },
       onErrors: () => {
         console.log('error');
       },
       onSuccess: () => {
         alert('Sign up is complete.');
-        // navigate('/login');
+        navigate('/login');
       },
     });
 

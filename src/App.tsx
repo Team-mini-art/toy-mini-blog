@@ -1,39 +1,44 @@
 import { Outlet } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux'
-import type { RootState } from "./store/store";
-import { decrement, increment, incrementByAmount } from './store/features/counter/counterSlice';
-
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState } from './store/store';
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+} from './store/features/counter/counterSlice';
+import Profile from './components/Profile';
 
 export default function App() {
-  const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
+  const count = useSelector((state: RootState) => state.counter.value);
+  const dispatch = useDispatch();
   return (
     <>
-    <div className='text-3xl text-center'>
+      <div className="text-3xl text-center">
         <button
-        className='common-button'
+          className="common-button"
           aria-label="Increment Amount value"
           onClick={() => dispatch(incrementByAmount(1))}
         >
           Increment Amount
         </button>
         <button
-        className='common-button'
+          className="common-button"
           aria-label="Increment value"
           onClick={() => dispatch(increment())}
         >
           Increment
         </button>
-        <span className='px-10'>{count}</span>
+        <span className="px-10">{count}</span>
         <button
-        className='common-button'
+          className="common-button"
           aria-label="Decrement value"
           onClick={() => dispatch(decrement())}
         >
           Decrement
         </button>
       </div>
+      <Profile></Profile>
       <div className="container-wrap pb-40">
         <Outlet />
       </div>

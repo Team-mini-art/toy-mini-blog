@@ -13,3 +13,16 @@ export interface SignupRes {
   accountNonLocked: boolean;
   credentialsNonExpired: boolean;
 }
+
+export interface LoginRes {
+  status: string;
+  message: string;
+  id: number;
+  email: string;
+  nickname: string;
+  tokenInfo: {
+    grantType: string;
+    accessToken: string;
+    refreshToken: string;
+  };
+}
