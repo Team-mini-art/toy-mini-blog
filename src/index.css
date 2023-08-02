@@ -27,6 +27,10 @@ body {
     /* @apply shadow-[inset_0.5rem_0.5rem_1rem_#babecc,_inset_-0.5rem_-0.5rem_1rem_#fff]; */
     @apply shadow-[1rem_1rem_0px_#bebebe,-1rem_-1rem_0px_#fff];
   }
+  .shadow_type2 {
+    @apply rounded-3xl;
+    @apply shadow-[inset_0.5rem_0.5rem_1rem_#babecc,_inset_-0.5rem_-0.5rem_1rem_#fff];
+  }
 
   .container-title {
     @apply pb-20;

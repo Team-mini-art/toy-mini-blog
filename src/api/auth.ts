@@ -15,5 +15,6 @@ export const postAuthLogin = async (loginForm: Record<string, string>) => {
     return data;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
