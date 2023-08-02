@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { type SignupRes, type LoginRes } from '../types/authType';
+import axios, { type AxiosError } from 'axios';
 
 interface useFormProps {
   initialValues: Record<string, string>;
   refs: Record<string, React.RefObject<HTMLInputElement>>;
   onSubmit: () => Promise<SignupRes | LoginRes>;
-  onErrors: () => void;
+  onErrors: (e: AxiosError) => void;
   onSuccess: (e: SignupRes | LoginRes) => void;
 }
 
@@ -42,8 +43,9 @@ export function useForm({
         const result = await onSubmit();
         onSuccess(result);
       } catch (e) {
-        console.log(e);
-        onErrors();
+        if (axios.isAxiosError(e)) {
+          onErrors(e);
+        }
       }
     }
   };

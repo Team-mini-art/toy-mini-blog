@@ -6,6 +6,7 @@ import { useForm } from '../hooks/useFormHook';
 // import { useNavigate } from 'react-router-dom';
 import { postAuthLogin } from '../api/auth';
 import { type LoginRes } from '../types/authType';
+import { type ErrorMessage } from '../types/errorType';
 import { login } from '../store/features/auth/authSlice';
 import { useDispatch } from 'react-redux';
 
@@ -33,8 +34,9 @@ export default function Login() {
         const result = await postAuthLogin(form);
         return result;
       },
-      onErrors: () => {
-        console.log('error');
+      onErrors: (e) => {
+        const { message } = e.response?.data as ErrorMessage;
+        alert(message);
       },
       onSuccess: (userInfo) => {
         // TODO if 지우기
@@ -46,6 +48,7 @@ export default function Login() {
           } = userInfo;
           alert('Log In is complete.');
           dispatch(login({ nickname, email, accessToken, refreshToken }));
+          // TODO navigate
           // navigate('/');
         }
       },

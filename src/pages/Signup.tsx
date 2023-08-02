@@ -45,7 +45,7 @@ export default function Signup() {
     });
 
   return (
-    <div className="container-basic shadow_type1 w-[37.5rem]">
+    <div className="container-basic shadow_type2 w-[37.5rem]">
       <h1 className="container-title">Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col items-center">
