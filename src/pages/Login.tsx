@@ -40,17 +40,18 @@ export default function Login() {
       },
       onSuccess: (userInfo) => {
         // TODO if 지우기
-        if ('tokenInfo' in userInfo) {
-          const {
-            nickname,
-            email,
-            tokenInfo: { accessToken, refreshToken },
-          } = userInfo;
-          alert('Log In is complete.');
-          dispatch(login({ nickname, email, accessToken, refreshToken }));
-          // TODO navigate
-          // navigate('/');
-        }
+        console.log(form);
+        const {
+          nickname,
+          email,
+          tokenInfo: { accessToken, refreshToken },
+        } = userInfo as LoginRes;
+        alert('Log In is complete.');
+        dispatch(login({ nickname, email, accessToken, refreshToken }));
+        // TODO navigate
+        // navigate('/');
+        // if ('tokenInfo' in userInfo) {
+        // }
       },
     });
 

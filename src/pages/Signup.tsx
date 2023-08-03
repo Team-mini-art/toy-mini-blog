@@ -6,6 +6,7 @@ import { useForm } from '../hooks/useFormHook';
 import { useNavigate } from 'react-router-dom';
 import { postAuthSignup } from '../api/auth';
 import { type SignupRes } from '../types/authType';
+import { type ErrorMessage } from '../types/errorType';
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -32,14 +33,16 @@ export default function Signup() {
       },
       refs,
       onSubmit: async (): Promise<SignupRes> => {
-        const result = await postAuthSignup(form);
+        const { confirm, ...formData } = form;
+        const result = await postAuthSignup(formData);
         return result;
       },
-      onErrors: () => {
-        console.log('error');
+      onErrors: (e) => {
+        const { message } = e.response?.data as ErrorMessage;
+        alert(message);
       },
-      onSuccess: () => {
-        alert('Sign up is complete.');
+      onSuccess: (e) => {
+        alert(`${e.message}되었습니다.`);
         navigate('/login');
       },
     });
@@ -76,7 +79,7 @@ export default function Signup() {
           <Input
             labelClass="mt-7 w-full text-xl text-basic"
             inputClass="mt-2 rounded-2xl"
-            type="password"
+            /* type="password" */
             name="password"
             value={form.password}
             placeholder="Enter Password"
@@ -89,7 +92,7 @@ export default function Signup() {
           <Input
             labelClass="mt-7 w-full text-xl text-basic"
             inputClass="mt-2 rounded-2xl"
-            type="password"
+            /* type="password" */
             name="confirm"
             value={form.confirm}
             placeholder="Enter Confirm Password"
