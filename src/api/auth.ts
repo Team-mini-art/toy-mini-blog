@@ -5,7 +5,7 @@ export const postAuthSignup = async (signupForm: Record<string, string>) => {
     const { data } = await axiosCustom.post('/api/signup', signupForm);
     return data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -14,7 +14,6 @@ export const postAuthLogin = async (loginForm: Record<string, string>) => {
     const { data } = await axiosCustom.post('/api/login', loginForm);
     return data;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };

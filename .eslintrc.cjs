@@ -33,6 +33,7 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': 'off',
     'react/react-in-jsx-scope': 'off', // 'React' must be in scope when using JSX
     'import/no-absolute-path': 'off', // Do not import modules using an absolute path
+    'no-useless-catch': 'off',
   },
   settings: {
     react: {

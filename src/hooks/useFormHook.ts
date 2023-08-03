@@ -53,7 +53,8 @@ export function useForm({
   const validate = (value: Record<string, string>) => {
     const emptyEntry = Object.entries(value).find(([_, val]) => val === '');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // const minPasswordLength = 8;
+    const passwordRegex =
+      /^(?=.*[!@#$%^&*()-=_+[\]{}/\\,.<>?'":;|]).*(?=.*[A-Z]).*(?=.*[0-9]).{10,}$/;
 
     // 빈 input check
     if (emptyEntry !== undefined) {
@@ -64,8 +65,8 @@ export function useForm({
     // 유효성 검사
     if (!emailRegex.test(value.email)) {
       return ['email'];
-      // } else if (minPasswordLength > value.password.length) {
-      //   return ['password'];
+    } else if (!passwordRegex.test(value.password)) {
+      return ['password'];
     } else if (
       value.password !== value.confirm &&
       value.confirm !== undefined
