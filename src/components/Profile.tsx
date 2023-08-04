@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { type RootState } from '../store/store';
-import { logout } from '../store/features/auth/authSlice';
+import { logout } from '../store/features/authSlice';
 
 export default function Profile() {
   const dispatch = useDispatch();

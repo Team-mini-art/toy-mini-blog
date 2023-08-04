@@ -12,6 +12,7 @@ export const postAuthSignup = async (signupForm: Record<string, string>) => {
 export const postAuthLogin = async (loginForm: Record<string, string>) => {
   try {
     const { data } = await axiosCustom.post('/api/login', loginForm);
+    console.log(data.tokenInfo);
     return data;
   } catch (error) {
     throw error;
