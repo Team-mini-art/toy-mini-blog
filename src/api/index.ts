@@ -21,7 +21,7 @@ instance.interceptors.request.use(
     const token = store.getState().auth.value.accessToken;
     config.headers.Authorization = token ? `Bearer ${token}` : '';
     // config.headers.Authorization = `Bearer ${token}`;
-    console.log('Authorization', config.headers.Authorization);
+    // console.log('Authorization', config.headers.Authorization);
     return config;
   },
   async (error) => {
@@ -35,6 +35,7 @@ instance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    // TODO refresh 토큰 관련 로직 작성
     // const dispatch = useDispatch();
     // const navigate = useNavigate();
 

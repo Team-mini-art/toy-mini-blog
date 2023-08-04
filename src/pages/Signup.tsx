@@ -1,8 +1,11 @@
+import { useRef } from 'react';
+
 import Input from '../components/Input';
 import Button from '../components/Button';
 import { IoMdPersonAdd } from 'react-icons/Io';
-import { useRef } from 'react';
+
 import { useForm } from '../hooks/useFormHook';
+
 import { useNavigate } from 'react-router-dom';
 import { postAuthSignup } from '../api/auth';
 import { type SignupRes } from '../types/authType';
@@ -79,7 +82,7 @@ export default function Signup() {
           <Input
             labelClass="mt-7 w-full text-xl text-basic"
             inputClass="mt-2 rounded-2xl"
-            /* type="password" */
+            type="password"
             name="password"
             value={form.password}
             placeholder="Enter Password"
@@ -92,7 +95,7 @@ export default function Signup() {
           <Input
             labelClass="mt-7 w-full text-xl text-basic"
             inputClass="mt-2 rounded-2xl"
-            /* type="password" */
+            type="password"
             name="confirm"
             value={form.confirm}
             placeholder="Enter Confirm Password"

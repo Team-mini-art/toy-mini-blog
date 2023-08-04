@@ -1,17 +1,21 @@
+import { useRef } from 'react';
+
 import Input from '../components/Input';
 import Button from '../components/Button';
 import { AiFillLock } from 'react-icons/Ai';
-import { useRef } from 'react';
+
 import { useForm } from '../hooks/useFormHook';
-// import { useNavigate } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
 import { postAuthLogin } from '../api/auth';
-import { type LoginRes } from '../types/authType';
-import { type ErrorMessage } from '../types/errorType';
-import { login } from '../store/features/auth/authSlice';
+import { login } from '../store/features/authSlice';
 import { useDispatch } from 'react-redux';
 
+import { type LoginRes } from '../types/authType';
+import { type ErrorMessage } from '../types/errorType';
+
 export default function Login() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -38,25 +42,21 @@ export default function Login() {
         const { message } = e.response?.data as ErrorMessage;
         alert(message);
       },
-      onSuccess: (userInfo) => {
-        // TODO if 지우기
-        console.log(form);
+      onSuccess: (e) => {
         const {
           nickname,
           email,
           tokenInfo: { accessToken, refreshToken },
-        } = userInfo as LoginRes;
-        alert('Log In is complete.');
+        } = e as LoginRes;
+        alert(`${e.message}되었습니다.`);
         dispatch(login({ nickname, email, accessToken, refreshToken }));
         // TODO navigate
-        // navigate('/');
-        // if ('tokenInfo' in userInfo) {
-        // }
+        navigate('/');
       },
     });
 
   return (
-    <div className="container-basic shadow_type1 w-[37.5rem]">
+    <div className="container-basic shadow_type2 w-[37.5rem]">
       <h1 className="container-title">Log In</h1>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col items-center">

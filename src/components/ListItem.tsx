@@ -2,12 +2,9 @@ export default function ListItem() {
   // 게시글 id, 제목, 내용, 회원id 생성일 수정일
   return (
     <li>
-      <div
-        className="my-3 py-5 px-10 flex justify-between items-end gap-10 rounded-3xl
-          hover:shadow-[inset_0.15rem_0.15rem_0.25rem_#babecc,_inset_-0.15rem_-0.15rem_0.25rem_#fff]"
-      >
-        <div className="cursor-pointer">
-          <h3 className="text-3xl">
+      <div className="my-3 py-5 px-10 flex justify-between items-end gap-10">
+        <div className="cursor-pointer group">
+          <h3 className="text-3xl group-hover:text-purple-500">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit.
           </h3>
           <p className="mt-5 text-xl line-clamp-2">
