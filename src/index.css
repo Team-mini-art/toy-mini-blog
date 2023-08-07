@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+@layer base {
+  html {
+    @apply text-gray-900;
+  }
+}
+/* html {
   font-size: 62.5%;
 }
 body {
@@ -17,19 +22,6 @@ body {
     @apply px-10;
     @apply min-h-screen;
     @apply flex justify-center items-center;
-  }
-
-  .container-basic {
-    @apply py-20 px-10 /* h-[66.7rem] */;
-  }
-  .shadow_type1 {
-    @apply rounded-3xl;
-    /* @apply shadow-[inset_0.5rem_0.5rem_1rem_#babecc,_inset_-0.5rem_-0.5rem_1rem_#fff]; */
-    @apply shadow-[1rem_1rem_0px_#bebebe,-1rem_-1rem_0px_#fff];
-  }
-  .shadow_type2 {
-    @apply rounded-3xl;
-    @apply shadow-[inset_0.5rem_0.5rem_1rem_#babecc,_inset_-0.5rem_-0.5rem_1rem_#fff];
   }
 
   .container-title {
@@ -57,4 +49,13 @@ body {
     @apply active:shadow-[inset_0.1rem_0.1rem_0.2rem_#babecc,_inset_-0.1rem_-0.1rem_0.2rem_#fff];
     @apply cursor-pointer;
   }
-}
+
+  .shadow_type1 {
+    @apply rounded-3xl;
+    @apply shadow-[1rem_1rem_0px_#bebebe,-1rem_-1rem_0px_#fff];
+  }
+  .shadow_type2 {
+    @apply rounded-3xl;
+    @apply shadow-[inset_0.5rem_0.5rem_1rem_#babecc,_inset_-0.5rem_-0.5rem_1rem_#fff];
+  }
+} */

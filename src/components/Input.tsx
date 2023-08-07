@@ -27,7 +27,7 @@ export default function Input({
     <label className={labelClass}>
       {children}
       <input
-        className={`common-input ${inputClass} ${
+        className={`${inputClass} ${
           error === name ? 'outline-1 outline-yellow-400' : ''
         }`}
         type={type}
