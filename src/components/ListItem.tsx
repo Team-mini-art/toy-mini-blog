@@ -1,21 +1,40 @@
 export default function ListItem() {
   // 게시글 id, 제목, 내용, 회원id 생성일 수정일
   return (
-    <li>
-      <div className="my-3 py-5 px-10 flex justify-between items-end gap-10">
-        <div className="cursor-pointer group">
-          <h3 className="text-3xl group-hover:text-purple-500">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          </h3>
-          <p className="mt-5 text-xl line-clamp-2">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus in voluptate dicta eius id facilis eaque ipsum at cum ad
-            tempora aspernatur dolores enim explicabo eligendi deserunt, itaque
-            magni perspiciatis.
-          </p>
+    <li className="py-12">
+      <article>
+        <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+          <dl>
+            <dt className="sr-only">Published on</dt>
+            <dd className="text-base font-medium leading-6 text-gray-500">
+              <time dateTime="2023-08-05T00:00:00.000Z">August 5, 2023</time>
+            </dd>
+          </dl>
+          <div className="space-y-5 xl:col-span-3">
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                  <button>Release of Tailwind Nextjs Starter Blog v2.0</button>
+                </h2>
+              </div>
+              <div className="prose max-w-none text-gray-400">
+                Release of Tailwind Nextjs Starter Blog template v2.0,
+                refactored with Nextjs App directory and React Server Components
+                setup.Discover the new features and how to migrate from V1.
+              </div>
+            </div>
+            <div className="text-base font-medium leading-6">
+              <a
+                className="text-purple-500 hover:text-purple-600"
+                aria-label='Read "Release of Tailwind Nextjs Starter Blog v2.0"'
+                href="/blog/release-of-tailwind-nextjs-starter-blog-v2.0"
+              >
+                Read more →
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="shrink-0 text-lg text-gray-500">2023.06.01</div>
-      </div>
+      </article>
     </li>
   );
 }
