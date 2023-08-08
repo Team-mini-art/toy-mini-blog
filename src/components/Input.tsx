@@ -24,9 +24,12 @@ export default function Input({
   error,
 }: Props) {
   return (
-    <label className={labelClass}>
-      {children}
+    <>
+      <label htmlFor={name} className={labelClass}>
+        {children}
+      </label>
       <input
+        id={name}
         className={`${inputClass} ${
           error === name ? 'outline-1 outline-yellow-400' : ''
         }`}
@@ -37,6 +40,6 @@ export default function Input({
         onChange={onChange}
         ref={refs[name]}
       />
-    </label>
+    </>
   );
 }

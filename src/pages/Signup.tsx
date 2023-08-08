@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { postAuthSignup } from '../api/auth';
 import { type SignupRes } from '../types/authType';
 import { type ErrorMessage } from '../types/errorType';
+import Title from '../components/Title';
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -51,71 +52,79 @@ export default function Signup() {
     });
 
   return (
-    <div className="py-20 px-10 shadow_type2 w-[37.5rem]">
-      <h1 className="container-title">Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col items-center">
-          <Input
-            labelClass="w-full text-xl text-basic"
-            inputClass="mt-2 rounded-2xl"
-            name="nickname"
-            value={form.nickname}
-            placeholder="Enter nickname"
-            onChange={handleInputChange}
-            refs={refs}
-            error={error}
-          >
-            Nickname
-          </Input>
-          <Input
-            labelClass="mt-7 w-full text-xl text-basic"
-            inputClass="mt-2 rounded-2xl"
-            name="email"
-            value={form.email}
-            placeholder="Enter Email"
-            onChange={handleInputChange}
-            refs={refs}
-            error={error}
-          >
-            Email
-          </Input>
-          <Input
-            labelClass="mt-7 w-full text-xl text-basic"
-            inputClass="mt-2 rounded-2xl"
-            type="password"
-            name="password"
-            value={form.password}
-            placeholder="Enter Password"
-            onChange={handleInputChange}
-            refs={refs}
-            error={error}
-          >
-            Password {/* (8자 이상 작성해주세요.) */}
-          </Input>
-          <Input
-            labelClass="mt-7 w-full text-xl text-basic"
-            inputClass="mt-2 rounded-2xl"
-            type="password"
-            name="confirm"
-            value={form.confirm}
-            placeholder="Enter Confirm Password"
-            onChange={handleInputChange}
-            refs={refs}
-            error={error}
-          >
-            Confirm Password
-          </Input>
-          {errorMessage !== '' && (
-            <p className="mt-5 text-xl text-red-500">{`Please check your ${errorMessage}`}</p>
-          )}
-          <Button
-            addClass="mt-12 py-6 px-10 flex justify-evenly items-center text-3xl font-semibold text-purple-500"
-            type="submit"
-          >
-            Sign Up <IoMdPersonAdd className="ml-3" />
-          </Button>
-        </div>
-      </form>
-    </div>
+    <>
+      <Title title="Sign Up" />
+      <div className="py-12 mx-auto w-full sm:w-96">
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-col items-start">
+            <Input
+              labelClass="pb-2 text-gray-500"
+              inputClass="py-2 px-4 w-full border border-gray-200 rounded-md active:outline-yellow-200 focus:outline-yellow-200"
+              name="nickname"
+              value={form.nickname}
+              placeholder="Enter nickname"
+              onChange={handleInputChange}
+              refs={refs}
+              error={error}
+            >
+              Nickname
+            </Input>
+            <Input
+              labelClass="mt-5 pb-2 text-gray-500"
+              inputClass="py-2 px-4 w-full border border-gray-200 rounded-md active:outline-yellow-200 focus:outline-yellow-200"
+              name="email"
+              value={form.email}
+              placeholder="Enter Email"
+              onChange={handleInputChange}
+              refs={refs}
+              error={error}
+            >
+              Email
+            </Input>
+            <Input
+              labelClass="mt-5 pb-2 text-gray-500"
+              inputClass="py-2 px-4 w-full border border-gray-200 rounded-md active:outline-yellow-200 focus:outline-yellow-200"
+              type="password"
+              name="password"
+              value={form.password}
+              placeholder="Enter Password"
+              onChange={handleInputChange}
+              refs={refs}
+              error={error}
+            >
+              Password
+              <br />
+              <span className="text-sm">
+                (10자 이상의 영문 대소문자, 숫자, 특수문자 조합을 사용해주세요.)
+              </span>
+            </Input>
+            <Input
+              labelClass="mt-5 pb-2 text-gray-500"
+              inputClass="py-2 px-4 w-full border border-gray-200 rounded-md active:outline-yellow-200 focus:outline-yellow-200"
+              type="password"
+              name="confirm"
+              value={form.confirm}
+              placeholder="Enter Confirm Password"
+              onChange={handleInputChange}
+              refs={refs}
+              error={error}
+            >
+              Confirm Password
+            </Input>
+            {errorMessage !== '' && (
+              <p className="mt-5 text-red-500">{`Please check your ${errorMessage}`}</p>
+            )}
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              addClass="mt-10 py-2 px-5 flex items-center gap-2 text-white bg-purple-500 hover:bg-purple-600 rounded-md"
+              type="submit"
+            >
+              Sign Up <IoMdPersonAdd />
+            </Button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }

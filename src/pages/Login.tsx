@@ -6,13 +6,14 @@ import { AiFillLock } from 'react-icons/Ai';
 
 import { useForm } from '../hooks/useFormHook';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { postAuthLogin } from '../api/auth';
 import { login } from '../store/features/authSlice';
 import { useDispatch } from 'react-redux';
 
 import { type LoginRes } from '../types/authType';
 import { type ErrorMessage } from '../types/errorType';
+import Title from '../components/Title';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -57,82 +58,54 @@ export default function Login() {
 
   return (
     <>
-      <div className="divide-y divide-gray-200">
-        <div className="pb-8 pt-6">
-          <h2 className="flex text-3xl font-extrabold tracking-tight sm:text-4xl md:text-6xl">
-            Log In
-          </h2>
-        </div>
-        <div className="py-12">
-          {/* <div>
-            <div className="pb-1 text-lg font-semibold text-gray-800 dark:text-gray-100">
-              Subscribe to the newsletter
-            </div>
-            <form className="flex flex-col sm:flex-row">
-              <div>
-                <label htmlFor="email-input">
-                  <span className="sr-only">Email address</span>
-                  <input
-                    autoComplete="email"
-                    className="focus:ring-primary-600 w-72 rounded-md px-4 focus:border-transparent focus:outline-none focus:ring-2 dark:bg-black"
-                    id="email-input"
-                    placeholder="Enter your email"
-                    required=""
-                    type="email"
-                    name="email"
-                  />
-                </label>
-              </div>
-              <div className="mt-2 flex w-full rounded-md shadow-sm sm:mt-0 sm:ml-3">
-                <button
-                  className="bg-primary-500 w-full rounded-md py-2 px-4 font-medium text-white sm:py-0 hover:bg-primary-700 dark:hover:bg-primary-400 focus:ring-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:ring-offset-black"
-                  type="submit"
-                >
-                  Sign up
-                </button>
-              </div>
-            </form>
-          </div> */}
-
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-col items-start gap-5">
-              <Input
-                labelClass=""
-                inputClass="py-2 px-4 block w-60 border border-gray-300 rounded-md"
-                name="email"
-                value={form.email}
-                placeholder="Enter Email"
-                onChange={handleInputChange}
-                refs={refs}
-                error={error}
-              >
-                Email
-              </Input>
-              <Input
-                labelClass=""
-                inputClass="py-2 px-4 block w-60 border border-gray-300 rounded-md"
-                type="password"
-                name="password"
-                value={form.password}
-                placeholder="Enter Password"
-                onChange={handleInputChange}
-                refs={refs}
-                error={error}
-              >
-                Password
-              </Input>
-              {errorMessage !== '' && (
-                <p className="mt-5 text-red-500">{`Please check your ${errorMessage}`}</p>
-              )}
-              <Button
-                addClass="py-2 px-5 flex items-center gap-2 bg-purple-500 text-white rounded-md"
-                type="submit"
-              >
-                Log In <AiFillLock />
-              </Button>
-            </div>
-          </form>
-        </div>
+      <Title title="Log In" />
+      <div className="py-12 mx-auto w-full sm:w-96">
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-col items-start">
+            <Input
+              labelClass="pb-2 text-gray-500"
+              inputClass="py-2 px-4 w-full border border-gray-200 rounded-md active:outline-yellow-200 focus:outline-yellow-200"
+              name="email"
+              value={form.email}
+              placeholder="Enter Email"
+              onChange={handleInputChange}
+              refs={refs}
+              error={error}
+            >
+              Email
+            </Input>
+            <Input
+              labelClass="mt-5 pb-2 text-gray-500"
+              inputClass="py-2 px-4 w-full border border-gray-200 rounded-md active:outline-yellow-200 focus:outline-yellow-200"
+              type="password"
+              name="password"
+              value={form.password}
+              placeholder="Enter Password"
+              onChange={handleInputChange}
+              refs={refs}
+              error={error}
+            >
+              Password
+            </Input>
+            {errorMessage !== '' && (
+              <p className="mt-5 text-red-500">{`Please check your ${errorMessage}`}</p>
+            )}
+          </div>
+          <div className="flex flex-col items-center">
+            <Button
+              addClass="mt-10 py-2 px-5 flex items-center gap-2 text-white bg-purple-500 hover:bg-purple-600 rounded-md"
+              type="submit"
+            >
+              Log In <AiFillLock />
+            </Button>
+            <Link
+              to="/signup"
+              className="mt-2 text-gray-400 hover:text-purple-600"
+            >
+              Sign Up
+            </Link>
+          </div>
+        </form>
       </div>
     </>
   );
