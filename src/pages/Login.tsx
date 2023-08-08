@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
-import { AiFillLock } from 'react-icons/Ai';
+import { AiFillLock } from 'react-icons/ai';
 
 import { useForm } from '../hooks/useFormHook';
 

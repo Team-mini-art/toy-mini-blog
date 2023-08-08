@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import Input from '../components/Input';
 import Button from '../components/Button';
-import { IoMdPersonAdd } from 'react-icons/Io';
+import { IoMdPersonAdd } from 'react-icons/io';
 
 import { useForm } from '../hooks/useFormHook';
 

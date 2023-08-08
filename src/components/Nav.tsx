@@ -1,6 +1,6 @@
-import { BsFillPersonFill } from 'react-icons/Bs';
-import { MdLightMode, MdModeNight } from 'react-icons/Md';
-// import { FiSearch } from 'react-icons/Fi';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { MdLightMode, MdModeNight } from 'react-icons/md';
+// import { FiSearch } from 'react-icons/fi';
 
 import { Link } from 'react-router-dom';
 import IconGradient from './IconGradient';
