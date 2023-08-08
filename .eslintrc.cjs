@@ -44,6 +44,6 @@ module.exports = {
     '.eslintrc.cjs',
     'tsconfig.json',
     'tailwind.config.js',
-    'vite.config.js',
+    'vite.config.ts',
   ], // 3. Parsing error: ESLint was configured to run on `<tsconfigRootDir>/.eslintrc.cjs` using `parserOptions.project`
 };
