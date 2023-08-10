@@ -1,5 +1,5 @@
 import { BsFillPersonFill } from 'react-icons/bs';
-import { MdLightMode, MdModeNight } from 'react-icons/md';
+// import { MdLightMode, MdModeNight } from 'react-icons/md';
 // import { FiSearch } from 'react-icons/fi';
 
 import { Link } from 'react-router-dom';
@@ -20,7 +20,7 @@ export default function Nav() {
     setIsHover((prev) => ({ ...prev, [key]: false }));
   };
 
-  const mode = false;
+  // const mode = false;
   return (
     <nav className="flex items-center gap-4 sm:mt-0 sm:justify-start sm:gap-6 mt-5 justify-end">
       <Link to="/blog" className="hover:text-gradient">
@@ -42,7 +42,7 @@ export default function Nav() {
           style={{ fill: isHover.login ? 'url(#login)' : '#111827' }}
         />
       </Link>
-      <button
+      {/* <button
         className="text-2xl"
         aria-label="Toggle Dark Mode"
         onMouseEnter={() => {
@@ -57,7 +57,7 @@ export default function Nav() {
         <MdModeNight
           style={{ fill: isHover.mode ? 'url(#mode)' : '#111827' }}
         />
-      </button>
+      </button> */}
     </nav>
   );
 }

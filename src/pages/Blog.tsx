@@ -1,3 +1,17 @@
+import { Link } from 'react-router-dom';
+import List from '../components/List';
+import Pagination from '../components/Pagination';
+
 export default function Blog() {
-  return <div>Blog</div>;
+  return (
+    <main>
+      <div className="flex justify-end">
+        <Link to="/new" className="button-rounded">
+          New Post
+        </Link>
+      </div>
+      <List />
+      <Pagination />
+    </main>
+  );
 }
