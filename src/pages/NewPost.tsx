@@ -6,8 +6,8 @@ import { useRef } from 'react';
 // import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 
 export default function NewPost() {
-  const titleRef = useRef(null);
-  const contentRef = useRef(null);
+  const titleRef = useRef<Editor>(null);
+  const contentRef = useRef<Editor>(null);
   // const postRef: Record<string, React.RefObject<HTMLInputElement>> = {
   const postRef = {
     title: titleRef,
@@ -15,7 +15,9 @@ export default function NewPost() {
   };
 
   const handleInputChange = () => {
-    postRef.content.current?.focus();
+    const contentEditor = postRef.content.current?.getInstance();
+    contentEditor.focus();
+    console.log(contentEditor.getHTML());
   };
 
   return (
@@ -24,6 +26,7 @@ export default function NewPost() {
         height="40rem"
         placeholder="Please Enter Text."
         previewStyle="vertical"
+        previewHighlight={false}
         initialEditType="markdown"
         hideModeSwitch={true}
         useCommandShortcut={true}
