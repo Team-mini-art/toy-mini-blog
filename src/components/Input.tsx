@@ -1,5 +1,7 @@
+// import { type Editor } from '@toast-ui/react-editor';
+
 interface Props {
-  labelClass: string;
+  labelClass?: string;
   inputClass?: string;
   type?: 'text' | 'password';
   name: string;
@@ -12,7 +14,7 @@ interface Props {
 }
 
 export default function Input({
-  labelClass,
+  labelClass = '',
   inputClass = '',
   type = 'text',
   name,
@@ -25,13 +27,16 @@ export default function Input({
 }: Props) {
   return (
     <>
-      <label htmlFor={name} className={labelClass}>
+      <label
+        htmlFor={name}
+        className={`block pb-2 text-gray-500 ${labelClass}`}
+      >
         {children}
       </label>
       <input
         id={name}
-        className={`${inputClass} ${
-          error === name ? 'outline-1 outline-yellow-400' : ''
+        className={`input-basic ${inputClass} ${
+          error === name ? 'input-error' : ''
         }`}
         type={type}
         name={name}
