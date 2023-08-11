@@ -5,7 +5,8 @@ import Title from '../components/Title';
 export default function Main() {
   return (
     <main>
-      <Title title="Latest" description="latest posts from all users." />
+      {/* <Title title="Latest" description="latest posts from all users." /> */}
+      <Title title="Latest" />
       <List />
       <div className="mt-5 flex justify-end">
         <Link

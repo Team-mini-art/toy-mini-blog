@@ -63,8 +63,6 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col items-start">
             <Input
-              labelClass="pb-2 text-gray-500"
-              inputClass="py-2 px-4 w-full border border-gray-200 rounded-md active:outline-yellow-200 focus:outline-yellow-200"
               name="email"
               value={form.email}
               placeholder="Enter Email"
@@ -75,8 +73,7 @@ export default function Login() {
               Email
             </Input>
             <Input
-              labelClass="mt-5 pb-2 text-gray-500"
-              inputClass="py-2 px-4 w-full border border-gray-200 rounded-md active:outline-yellow-200 focus:outline-yellow-200"
+              labelClass="mt-5"
               type="password"
               name="password"
               value={form.password}
