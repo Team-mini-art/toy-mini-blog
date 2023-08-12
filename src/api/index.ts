@@ -1,8 +1,7 @@
 import axios from 'axios';
 import store from '../store/store';
-// import { useDispatch } from 'react-redux';
-// import { login, logout } from '../store/features/auth/authSlice';
-// import { useNavigate } from 'react-router-dom';
+import { postAuthRefresh } from './auth';
+import { login, logout } from '../store/features/authSlice';
 
 const BASE_URL = 'http://localhost:8081';
 // const BASE_URL = '';
@@ -19,9 +18,13 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const token = store.getState().auth.value.accessToken;
-    config.headers.Authorization = token ? `Bearer ${token}` : '';
-    // config.headers.Authorization = `Bearer ${token}`;
-    // console.log('Authorization', config.headers.Authorization);
+
+    if (config.url !== '/api/refresh') {
+      // config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = token ? `Bearer ${token}` : '';
+      // console.log('Authorization', config.headers.Authorization);
+    }
+
     return config;
   },
   async (error) => {
@@ -36,27 +39,25 @@ instance.interceptors.response.use(
   },
   async (error) => {
     // TODO refresh 토큰 관련 로직 작성
-    // const dispatch = useDispatch();
-    // const navigate = useNavigate();
+    const dispatch = store.dispatch;
 
-    // const {
-    //   response: { status },
-    // } = error;
-    // if (status === 401) {
-    //   const { data } = await instance.post('/api/토큰확인url', {
-    //     // const token = store.getState().auth.value.accessToken;
-    //     headers: {
-    //       accessToken: store.getState().auth.value.accessToken,
-    //       refreshToken: store.getState().auth.value.refreshToken,
-    //     },
-    //   });
+    const {
+      response: { status },
+    } = error;
 
-    //   // dispatch(login({data.accessToken, data.refreshToken}));
-    // } else if (status === 419) {
-    //   dispatch(logout());
-    //   alert('토큰이 만료되어 자동으로 로그아웃 되었습니다.');
-    //   navigate('/login');
-    // }
+    if (status === 401) {
+      const { newAccessToken } = await postAuthRefresh();
+      dispatch(login({ accessToken: newAccessToken }));
+
+      const originalRequest = error.config;
+      originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+
+      return await instance(originalRequest);
+    } else if (status === 419) {
+      dispatch(logout());
+      alert('토큰이 만료되어 자동으로 로그아웃 되었습니다.');
+      window.location.href = '/login';
+    }
     return await Promise.reject(error);
   },
 );

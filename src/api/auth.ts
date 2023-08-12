@@ -1,4 +1,5 @@
 import axiosCustom from './index';
+import store from '../store/store';
 
 export const postAuthSignup = async (signupForm: Record<string, string>) => {
   try {
@@ -12,7 +13,19 @@ export const postAuthSignup = async (signupForm: Record<string, string>) => {
 export const postAuthLogin = async (loginForm: Record<string, string>) => {
   try {
     const { data } = await axiosCustom.post('/api/login', loginForm);
-    console.log(data.tokenInfo);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postAuthRefresh = async () => {
+  try {
+    const { accessToken, refreshToken } = store.getState().auth.value;
+    const { data } = await axiosCustom.post('/api/refresh', {
+      accessToken,
+      refreshToken,
+    });
     return data;
   } catch (error) {
     throw error;
