@@ -22,6 +22,7 @@ export const postAuthLogin = async (loginForm: Record<string, string>) => {
 export const postAuthRefresh = async () => {
   try {
     const { accessToken, refreshToken } = store.getState().auth.value;
+    console.log(accessToken, refreshToken);
     const { data } = await axiosCustom.post('/api/refresh', {
       accessToken,
       refreshToken,
