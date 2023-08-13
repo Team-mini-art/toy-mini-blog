@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import List from '../components/List';
 import Pagination from '../components/Pagination';
 
-export default function Blog() {
+export default function Post() {
   return (
     <main>
       <div className="flex justify-end">

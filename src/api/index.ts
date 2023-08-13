@@ -47,12 +47,19 @@ instance.interceptors.response.use(
 
     console.log(status, message);
     if (status === 401) {
+      // const { newAccessToken } = (await postAuthRefresh()) as {
+      //   newAccessToken: string;
+      // };
+      // dispatch(login({ accessToken: newAccessToken }));
+      // const originalRequest = error.config;
+      // originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+      // return await instance(originalRequest);
+
       if (message === 'access_token_expired') {
         const { newAccessToken } = (await postAuthRefresh()) as {
           newAccessToken: string;
         };
         dispatch(login({ accessToken: newAccessToken }));
-
         const originalRequest = error.config;
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         return await instance(originalRequest);
