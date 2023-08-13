@@ -42,21 +42,25 @@ instance.interceptors.response.use(
     const dispatch = store.dispatch;
 
     const {
-      response: { status },
+      response: { status, message },
     } = error;
 
+    console.log(status, message);
     if (status === 401) {
-      const { newAccessToken } = await postAuthRefresh();
-      dispatch(login({ accessToken: newAccessToken }));
+      if (message === 'access_token_expired') {
+        const { newAccessToken } = (await postAuthRefresh()) as {
+          newAccessToken: string;
+        };
+        dispatch(login({ accessToken: newAccessToken }));
 
-      const originalRequest = error.config;
-      originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-
-      return await instance(originalRequest);
-    } else if (status === 419) {
-      dispatch(logout());
-      alert('토큰이 만료되어 자동으로 로그아웃 되었습니다.');
-      window.location.href = '/login';
+        const originalRequest = error.config;
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return await instance(originalRequest);
+      } else if (message === 'refresh_token_expired') {
+        dispatch(logout());
+        alert('토큰이 만료되어 자동으로 로그아웃 되었습니다.');
+        window.location.href = '/login';
+      }
     }
     return await Promise.reject(error);
   },
