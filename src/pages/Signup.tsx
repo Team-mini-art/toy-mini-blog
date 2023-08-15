@@ -46,7 +46,7 @@ export default function Signup() {
         alert(message);
       },
       onSuccess: (e) => {
-        alert(`${e.message}되었습니다.`);
+        alert(`${e.message}`);
         navigate('/login');
       },
     });

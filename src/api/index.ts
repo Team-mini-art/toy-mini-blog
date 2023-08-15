@@ -22,7 +22,7 @@ instance.interceptors.request.use(
     if (config.url !== '/api/refresh') {
       // config.headers.Authorization = `Bearer ${token}`;
       config.headers.Authorization = token ? `Bearer ${token}` : '';
-      // console.log('Authorization', config.headers.Authorization);
+      console.log('Authorization', config.headers.Authorization);
     }
 
     return config;

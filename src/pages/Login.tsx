@@ -49,7 +49,7 @@ export default function Login() {
           email,
           tokenInfo: { accessToken, refreshToken },
         } = e as LoginRes;
-        alert(`${e.message}되었습니다.`);
+        alert(`${e.message}`);
         dispatch(login({ nickname, email, accessToken, refreshToken }));
         // TODO navigate
         navigate('/');
