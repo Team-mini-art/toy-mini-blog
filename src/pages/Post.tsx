@@ -2,7 +2,11 @@ import { Link } from 'react-router-dom';
 import List from '../components/List';
 import Pagination from '../components/Pagination';
 
-export default function Blog() {
+import { getPosts } from '../api/post';
+import { useQuery } from 'react-query';
+
+export default function Post() {
+  const { data } = useQuery('posts', getPosts);
   return (
     <main>
       <div className="flex justify-end">
@@ -10,7 +14,7 @@ export default function Blog() {
           New Post
         </Link>
       </div>
-      <List />
+      <List posts={data} />
       <Pagination />
     </main>
   );

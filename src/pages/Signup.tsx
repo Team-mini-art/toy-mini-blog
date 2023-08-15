@@ -46,7 +46,7 @@ export default function Signup() {
         alert(message);
       },
       onSuccess: (e) => {
-        alert(`${e.message}되었습니다.`);
+        alert(`${e.message}`);
         navigate('/login');
       },
     });
@@ -56,60 +56,58 @@ export default function Signup() {
       <Title title="Sign Up" />
       <div className="py-12 mx-auto w-full sm:w-96">
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col items-start">
-            <Input
-              name="nickname"
-              value={form.nickname}
-              placeholder="Enter nickname"
-              onChange={handleInputChange}
-              refs={refs}
-              error={error}
-            >
-              Nickname
-            </Input>
-            <Input
-              labelClass="mt-5"
-              name="email"
-              value={form.email}
-              placeholder="Enter Email"
-              onChange={handleInputChange}
-              refs={refs}
-              error={error}
-            >
-              Email
-            </Input>
-            <Input
-              labelClass="mt-5"
-              type="password"
-              name="password"
-              value={form.password}
-              placeholder="Enter Password"
-              onChange={handleInputChange}
-              refs={refs}
-              error={error}
-            >
-              Password
-              <br />
-              <span className="text-sm">
-                (10자 이상의 영문 대소문자, 숫자, 특수문자 조합을 사용해주세요.)
-              </span>
-            </Input>
-            <Input
-              labelClass="mt-5"
-              type="password"
-              name="confirm"
-              value={form.confirm}
-              placeholder="Enter Confirm Password"
-              onChange={handleInputChange}
-              refs={refs}
-              error={error}
-            >
-              Confirm Password
-            </Input>
-            {errorMessage !== '' && (
-              <p className="mt-5 text-red-500">{`Please check your ${errorMessage}`}</p>
-            )}
-          </div>
+          <Input
+            name="nickname"
+            value={form.nickname}
+            placeholder="Enter nickname"
+            onChange={handleInputChange}
+            refs={refs}
+            error={error}
+          >
+            Nickname
+          </Input>
+          <Input
+            labelClass="mt-5"
+            name="email"
+            value={form.email}
+            placeholder="Enter Email"
+            onChange={handleInputChange}
+            refs={refs}
+            error={error}
+          >
+            Email
+          </Input>
+          <Input
+            labelClass="mt-5"
+            type="password"
+            name="password"
+            value={form.password}
+            placeholder="Enter Password"
+            onChange={handleInputChange}
+            refs={refs}
+            error={error}
+          >
+            Password
+            <br />
+            <span className="text-sm">
+              (10자 이상의 영문 대소문자, 숫자, 특수문자 조합을 사용해주세요.)
+            </span>
+          </Input>
+          <Input
+            labelClass="mt-5"
+            type="password"
+            name="confirm"
+            value={form.confirm}
+            placeholder="Enter Confirm Password"
+            onChange={handleInputChange}
+            refs={refs}
+            error={error}
+          >
+            Confirm Password
+          </Input>
+          {errorMessage !== '' && (
+            <p className="mt-5 text-red-500">{`Please check your ${errorMessage}`}</p>
+          )}
           <div className="flex flex-col items-center">
             <Button
               addClass="mt-10 py-2 px-5 flex items-center gap-2 text-white bg-purple-500 hover:bg-purple-600 rounded-md"

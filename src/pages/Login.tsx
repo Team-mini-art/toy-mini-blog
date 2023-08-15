@@ -49,7 +49,7 @@ export default function Login() {
           email,
           tokenInfo: { accessToken, refreshToken },
         } = e as LoginRes;
-        alert(`${e.message}되었습니다.`);
+        alert(`${e.message}`);
         dispatch(login({ nickname, email, accessToken, refreshToken }));
         // TODO navigate
         navigate('/');
@@ -61,33 +61,31 @@ export default function Login() {
       <Title title="Log In" />
       <div className="py-12 mx-auto w-full sm:w-96">
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col items-start">
-            <Input
-              name="email"
-              value={form.email}
-              placeholder="Enter Email"
-              onChange={handleInputChange}
-              refs={refs}
-              error={error}
-            >
-              Email
-            </Input>
-            <Input
-              labelClass="mt-5"
-              type="password"
-              name="password"
-              value={form.password}
-              placeholder="Enter Password"
-              onChange={handleInputChange}
-              refs={refs}
-              error={error}
-            >
-              Password
-            </Input>
-            {errorMessage !== '' && (
-              <p className="mt-5 text-red-500">{`Please check your ${errorMessage}`}</p>
-            )}
-          </div>
+          <Input
+            name="email"
+            value={form.email}
+            placeholder="Enter Email"
+            onChange={handleInputChange}
+            refs={refs}
+            error={error}
+          >
+            Email
+          </Input>
+          <Input
+            labelClass="mt-5"
+            type="password"
+            name="password"
+            value={form.password}
+            placeholder="Enter Password"
+            onChange={handleInputChange}
+            refs={refs}
+            error={error}
+          >
+            Password
+          </Input>
+          {errorMessage !== '' && (
+            <p className="mt-5 text-red-500">{`Please check your ${errorMessage}`}</p>
+          )}
           <div className="flex flex-col items-center">
             <Button type="submit">
               Log In <AiFillLock />

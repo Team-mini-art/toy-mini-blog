@@ -5,12 +5,15 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import IconGradient from './IconGradient';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { type RootState } from '../store/store';
 
 export default function Nav() {
   const [isHover, setIsHover] = useState({
     login: false,
     mode: false,
   });
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth.value);
 
   const onHover = (key: string) => {
     setIsHover((prev) => ({ ...prev, [key]: true }));
@@ -23,11 +26,11 @@ export default function Nav() {
   // const mode = false;
   return (
     <nav className="flex items-center gap-4 sm:mt-0 sm:justify-start sm:gap-6 mt-5 justify-end">
-      <Link to="/blog" className="hover:text-gradient">
+      <Link to="/post" className="hover:text-gradient">
         My Blog
       </Link>
       <Link
-        to="/login"
+        to={isLoggedIn ? '/profile' : '/login'}
         className="text-2xl"
         aria-label="Login"
         onMouseEnter={() => {

@@ -1,6 +1,11 @@
-export interface SignupRes {
-  status: 'string';
-  message: 'string';
+// TODO: API 필요 없는 거 빼기
+export interface GetPostRes {
+  id: number;
+  email: string;
+  title: string;
+  contents: string;
+  createdDate: string;
+  updatedDate: string;
 }
 
 export interface LoginRes {

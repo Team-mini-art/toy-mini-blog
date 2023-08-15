@@ -1,14 +1,26 @@
 import ListItem from './ListItem';
+import { type GetPostRes } from '../types/postType';
 
-export default function List() {
-  const arr = Array(10).fill(0);
+export default function List({ posts }: { posts: GetPostRes[] }) {
+  if (!posts) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <ul className="divide-y divide-gray-200">
-      {arr.map((_, idx) => {
-        if (idx >= 3) return null;
-        return <ListItem key={idx}></ListItem>;
-      })}
+      {posts
+        .reverse()
+        .map(({ id, title, contents, createdDate }: GetPostRes) => {
+          // if (id > 3) return null;
+          return (
+            <ListItem
+              key={id}
+              title={title}
+              contents={contents}
+              createdDate={createdDate}
+            />
+          );
+        })}
     </ul>
   );
 }
