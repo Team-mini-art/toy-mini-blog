@@ -1,4 +1,3 @@
-// TODO: API 필요 없는 거 빼기
 export interface GetPostRes {
   id: number;
   email: string;
@@ -8,14 +7,7 @@ export interface GetPostRes {
   updatedDate: string;
 }
 
-export interface LoginRes {
+export interface PostRes {
   status: string;
   message: string;
-  email: string;
-  nickname: string;
-  tokenInfo: {
-    grantType: string;
-    accessToken: string;
-    refreshToken: string;
-  };
 }
