@@ -11,23 +11,23 @@ import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 
 import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+// import PublicRoute from './PublicRoute';
 
 const routes = [
   {
     path: '/',
     element: <Home />,
-    isPrivate: true,
+    isPrivate: false,
   },
   {
     path: '/post',
     element: <Post />,
-    isPrivate: true,
+    isPrivate: false,
   },
   {
     path: '/post/:id',
     element: <View />,
-    isPrivate: true,
+    isPrivate: false,
   },
   {
     path: '/new',
@@ -60,7 +60,8 @@ const router = createBrowserRouter([
       element: isPrivate ? (
         <PrivateRoute>{element}</PrivateRoute>
       ) : (
-        <PublicRoute>{element}</PublicRoute>
+        // <PublicRoute>{element}</PublicRoute>
+        element
       ),
     })),
   },
