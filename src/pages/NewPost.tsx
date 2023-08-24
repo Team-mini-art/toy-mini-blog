@@ -1,17 +1,17 @@
-import Input from '../components/Input';
-
 // Toast UI Editor
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 // import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 
-import { useRef, useState } from 'react';
+import Input from '../components/Input';
 import Title from '../components/Title';
 import Button from '../components/Button';
+
+import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { type RootState } from '../store/store';
-import { postPosts } from '../api/post';
 import { useNavigate } from 'react-router-dom';
+import { postPosts } from '../api/post';
+import { type RootState } from '../store/store';
 import { type PostRes } from '../types/postType';
 
 export default function NewPost() {
@@ -31,7 +31,7 @@ export default function NewPost() {
       contents: contentEditor.getHTML(),
     });
     alert(`${result.message} 했습니다.`);
-    navigate('/');
+    navigate('/post');
   };
 
   return (

@@ -1,35 +1,14 @@
+import { Link } from 'react-router-dom';
+import formatDate from '../util/formatDate';
+
 interface Props {
+  id: number;
   title: string;
   contents: string;
   createdDate: string;
 }
 
-export default function ListItem({ title, contents, createdDate }: Props) {
-  // 게시글 id, 제목, 내용, 회원id 생성일 수정일
-
-  function formatDate(dateString: string) {
-    const date = new Date(dateString);
-    const monthNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-
-    return `${monthNames[monthIndex]} ${day}, ${year}`;
-  }
+export default function ListItem({ id, title, contents, createdDate }: Props) {
   const formattedDate = formatDate(createdDate);
 
   return (
@@ -42,19 +21,18 @@ export default function ListItem({ title, contents, createdDate }: Props) {
               <div className="space-y-6">
                 <div>
                   <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                    <button>{title}</button>
+                    <Link to={`/post/${id}`}>{title}</Link>
                   </h2>
                 </div>
                 <div className="prose max-w-none text-gray-400">{contents}</div>
               </div>
               <div className="text-base font-medium leading-6">
-                <a
+                <Link
+                  to={`/post/${id}`}
                   className="text-purple-500 hover:text-purple-600"
-                  aria-label='Read "Release of Tailwind Nextjs Starter Blog v2.0"'
-                  href="/blog/release-of-tailwind-nextjs-starter-blog-v2.0"
                 >
                   Read more →
-                </a>
+                </Link>
               </div>
             </div>
           </div>

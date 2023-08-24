@@ -17,3 +17,12 @@ export const postPosts = async (postForm: Record<string, string>) => {
     throw error;
   }
 };
+
+export const getView = async (id: string) => {
+  try {
+    const { data } = await axiosCustom.get(`/api/posts/${id}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

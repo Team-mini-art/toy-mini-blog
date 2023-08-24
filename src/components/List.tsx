@@ -15,6 +15,7 @@ export default function List({ posts }: { posts: GetPostRes[] }) {
           return (
             <ListItem
               key={id}
+              id={id}
               title={title}
               contents={contents}
               createdDate={createdDate}
