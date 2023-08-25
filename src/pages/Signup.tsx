@@ -108,11 +108,8 @@ export default function Signup() {
           {errorMessage !== '' && (
             <p className="mt-5 text-red-500">{`Please check your ${errorMessage}`}</p>
           )}
-          <div className="flex flex-col items-center">
-            <Button
-              addClass="mt-10 py-2 px-5 flex items-center gap-2 text-white bg-purple-500 hover:bg-purple-600 rounded-md"
-              type="submit"
-            >
+          <div className="mt-10 flex flex-col items-center">
+            <Button type="submit">
               Sign Up <IoMdPersonAdd />
             </Button>
           </div>

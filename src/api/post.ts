@@ -26,3 +26,12 @@ export const getView = async (id: string) => {
     throw error;
   }
 };
+
+export const deleteView = async (id: string) => {
+  try {
+    const { data } = await axiosCustom.delete(`/api/posts/${id}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
