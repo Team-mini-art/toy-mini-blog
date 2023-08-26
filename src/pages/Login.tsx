@@ -86,7 +86,7 @@ export default function Login() {
           {errorMessage !== '' && (
             <p className="mt-5 text-red-500">{`Please check your ${errorMessage}`}</p>
           )}
-          <div className="flex flex-col items-center">
+          <div className="mt-10 flex flex-col items-center">
             <Button type="submit">
               Log In <AiFillLock />
             </Button>
