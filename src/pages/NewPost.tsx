@@ -10,7 +10,7 @@ import Button from '../components/Button';
 import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { postPosts } from '../api/post';
+import { createPosts } from '../api/post';
 import { type RootState } from '../store/store';
 import { type PostRes } from '../types/postType';
 
@@ -25,7 +25,7 @@ export default function NewPost() {
   const { email } = useSelector((state: RootState) => state.auth.value);
 
   const handleInputChange = async () => {
-    const result: PostRes = await postPosts({
+    const result: PostRes = await createPosts({
       email,
       title,
       contents: contentEditor.getHTML(),
