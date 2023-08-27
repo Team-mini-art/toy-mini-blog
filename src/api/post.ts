@@ -9,9 +9,9 @@ export const getPosts = async () => {
   }
 };
 
-export const postPosts = async (postForm: Record<string, string>) => {
+export const createPosts = async (createForm: Record<string, string>) => {
   try {
-    const { data } = await axiosCustom.post('/api/posts', postForm);
+    const { data } = await axiosCustom.post('/api/posts', createForm);
     return data;
   } catch (error) {
     throw error;
@@ -21,6 +21,15 @@ export const postPosts = async (postForm: Record<string, string>) => {
 export const getView = async (id: string) => {
   try {
     const { data } = await axiosCustom.get(`/api/posts/${id}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const putView = async (id: string, putForm: Record<string, string>) => {
+  try {
+    const { data } = await axiosCustom.put(`/api/posts/${id}`, putForm);
     return data;
   } catch (error) {
     throw error;
