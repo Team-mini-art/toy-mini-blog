@@ -7,7 +7,9 @@ export default function App() {
     <>
       <section className="mx-auto px-6 max-w-screen-lg min-h-screen flex flex-col">
         <Header />
-        <Outlet />
+        <main>
+          <Outlet />
+        </main>
         <Footer />
       </section>
     </>

@@ -4,7 +4,8 @@ import App from '../App';
 import Home from '../pages/Home';
 import Post from '../pages/Post';
 import View from '../pages/View';
-import NewPost from '../pages/NewPost';
+import PostNew from '../pages/PostNew';
+import PostUpdate from '../pages/PostUpdate';
 import Profile from '../pages/Profile';
 
 import Login from '../pages/Login';
@@ -31,7 +32,12 @@ const routes = [
   },
   {
     path: '/new',
-    element: <NewPost />,
+    element: <PostNew />,
+    isPrivate: true,
+  },
+  {
+    path: '/modify/:id',
+    element: <PostUpdate />,
     isPrivate: true,
   },
   {

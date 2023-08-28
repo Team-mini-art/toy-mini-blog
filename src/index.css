@@ -24,6 +24,10 @@
     @apply outline-1 outline-yellow-400;
   }
 
+  .button-hover {
+    @apply text-gray-400 hover:text-purple-600;
+  }
+
   .button-rounded {
     @apply py-2 px-5;
     @apply flex items-center gap-2;

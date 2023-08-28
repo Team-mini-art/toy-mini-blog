@@ -9,30 +9,43 @@ import Button from '../components/Button';
 
 import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { createPosts } from '../api/post';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { createPosts, getView } from '../api/post';
 import { type RootState } from '../store/store';
 import { type PostRes } from '../types/postType';
+import { useQuery } from 'react-query';
 
-export default function NewPost() {
-  const [title, setTitle] = useState('');
+export default function PostUpdate() {
+  // const [title, setTitle] = useState('');
+  const { email } = useSelector((state: RootState) => state.auth.value);
   const navigate = useNavigate();
+  const location = useLocation();
+  const pathName = location.pathname.split('/')[2];
+
+  const { isLoading, data } = useQuery(
+    'view',
+    async () => await getView(pathName),
+  );
+
+  const [title, setTitle] = useState(data.title);
 
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<Editor>(null);
   const contentEditor = contentRef.current?.getInstance();
 
-  const { email } = useSelector((state: RootState) => state.auth.value);
-
   const handleInputChange = async () => {
     const result: PostRes = await createPosts({
       email,
       title,
-      contents: contentEditor.getHTML(),
+      contents: contentEditor.getMarkdown(),
     });
-    alert(`${result.message} 했습니다.`);
+    alert(`${result.message}`);
     navigate('/post');
   };
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
 
   return (
     <>
@@ -65,9 +78,10 @@ export default function NewPost() {
             useCommandShortcut={true}
             usageStatistics={false}
             ref={contentRef}
+            initialValue={data.contents}
             // theme="dark"
           />
-          <div className="flex justify-end">
+          <div className="mt-10 flex justify-end">
             <Button onClick={handleInputChange}>Click</Button>
           </div>
         </div>
