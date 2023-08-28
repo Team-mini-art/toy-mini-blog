@@ -12,7 +12,7 @@ export default function Post() {
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state: RootState) => state.auth.value);
 
-  const handleNewPost = () => {
+  const handlePostNew = () => {
     if (!isLoggedIn) {
       alert('로그인이 필요합니다.');
       navigate('/login');
@@ -23,7 +23,7 @@ export default function Post() {
   return (
     <main>
       <div className="flex justify-end">
-        <button className="mt-10 button-rounded" onClick={handleNewPost}>
+        <button className="mt-10 button-rounded" onClick={handlePostNew}>
           New Post
         </button>
       </div>

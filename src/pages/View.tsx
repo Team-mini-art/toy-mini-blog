@@ -5,7 +5,7 @@ import { Viewer } from '@toast-ui/react-editor';
 import Title from '../components/Title';
 
 import { useQuery } from 'react-query';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { deleteView, getView } from '../api/post';
 import formatDate from '../util/formatDate';
 import { useSelector } from 'react-redux';
@@ -21,6 +21,7 @@ export default function View() {
     'view',
     async () => await getView(pathName),
   );
+  console.log(data);
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -43,12 +44,12 @@ export default function View() {
     <>
       <Title subtitle={data.title} description={formattedDate} />
       <Viewer initialValue={data.contents} />
-      <div className="mt-20 flex justify-end">
-        <button
-          onClick={handleDelete}
-          className="text-gray-400 hover:text-purple-600"
-        >
-          Delete Post
+      <div className="mt-40 pt-10 flex justify-end gap-5 border-t border-gray-200">
+        <Link to={`/modify/${pathName}`} className="button-hover">
+          Modify
+        </Link>
+        <button onClick={handleDelete} className="button-hover">
+          Delete
         </button>
       </div>
     </>

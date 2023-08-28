@@ -90,10 +90,7 @@ export default function Login() {
             <Button type="submit">
               Log In <AiFillLock />
             </Button>
-            <Link
-              to="/signup"
-              className="mt-2 text-gray-400 hover:text-purple-600"
-            >
+            <Link to="/signup" className="mt-2 button-hover">
               Sign Up
             </Link>
           </div>

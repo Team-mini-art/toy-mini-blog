@@ -21,7 +21,7 @@ export default function Profile() {
       <div className="mt-12 text-right">
         <Link
           to="/"
-          className="mt-2 text-gray-400 hover:text-purple-600"
+          className="mt-2 button-hover"
           onClick={() => dispatch(logout())}
         >
           Log Out
