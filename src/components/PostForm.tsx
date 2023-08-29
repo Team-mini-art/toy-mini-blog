@@ -4,52 +4,11 @@ import { Editor } from '@toast-ui/react-editor';
 // import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 
 import Input from '../components/Input';
-import Title from '../components/Title';
 import Button from '../components/Button';
 
-import { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { createPosts, getView } from '../api/post';
-import { type RootState } from '../store/store';
-import { type PostRes } from '../types/postType';
-import { useQuery } from 'react-query';
-
-export default function PostNew() {
-  // const [title, setTitle] = useState('');
-  const { email } = useSelector((state: RootState) => state.auth.value);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const pathName = location.pathname.split('/')[2];
-
-  const { isLoading, data } = useQuery(
-    'view',
-    async () => await getView(pathName),
-  );
-
-  const [title, setTitle] = useState(data.title);
-
-  const titleRef = useRef<HTMLInputElement>(null);
-  const contentRef = useRef<Editor>(null);
-  const contentEditor = contentRef.current?.getInstance();
-
-  const handleInputChange = async () => {
-    const result: PostRes = await createPosts({
-      email,
-      title,
-      contents: contentEditor.getMarkdown(),
-    });
-    alert(`${result.message}`);
-    navigate('/post');
-  };
-
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
-
+export default function PostNew({ title, setTitle, handleInputChange }) {
   return (
     <>
-      <Title title="New Post" />
       <form action="">
         <div className="py-12">
           <Input
@@ -61,7 +20,7 @@ export default function PostNew() {
             onChange={(e) => {
               setTitle(e.target.value);
             }}
-            refs={{ title: titleRef }}
+            // refs={{ title: titleRef }}
             // error={error}
           >
             Title
@@ -77,8 +36,7 @@ export default function PostNew() {
             hideModeSwitch={true}
             useCommandShortcut={true}
             usageStatistics={false}
-            ref={contentRef}
-            initialValue={data.contents}
+            // ref={contentRef}
             // theme="dark"
           />
           <div className="mt-10 flex justify-end">
