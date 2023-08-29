@@ -23,7 +23,8 @@ export default function PostNew() {
   const contentRef = useRef<Editor>(null);
   const contentEditor = contentRef.current?.getInstance();
 
-  const handleInputChange = async () => {
+  const handleInputChange = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const result: PostRes = await createPosts({
       email,
       title,
@@ -36,7 +37,7 @@ export default function PostNew() {
   return (
     <>
       <Title title="New Post" />
-      <form action="">
+      <form onSubmit={handleInputChange}>
         <div className="py-12">
           <Input
             labelClass=""
@@ -67,7 +68,7 @@ export default function PostNew() {
             // theme="dark"
           />
           <div className="mt-10 flex justify-end">
-            <Button onClick={handleInputChange}>Click</Button>
+            <Button type="submit">Click</Button>
           </div>
         </div>
       </form>
