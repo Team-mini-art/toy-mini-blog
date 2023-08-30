@@ -4,8 +4,7 @@ import App from '../App';
 import Home from '../pages/Home';
 import Post from '../pages/Post';
 import View from '../pages/View';
-import PostNew from '../pages/PostNew';
-import PostUpdate from '../pages/PostUpdate';
+import PostForm from '../pages/PostForm';
 import Profile from '../pages/Profile';
 
 import Login from '../pages/Login';
@@ -32,12 +31,12 @@ const routes = [
   },
   {
     path: '/new',
-    element: <PostNew />,
+    element: <PostForm />,
     isPrivate: true,
   },
   {
     path: '/modify/:id',
-    element: <PostUpdate />,
+    element: <PostForm />,
     isPrivate: true,
   },
   {

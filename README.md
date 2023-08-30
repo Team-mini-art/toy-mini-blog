@@ -1,9 +1,8 @@
 # React + TypeScript + Vite
 
-useForm 커스텀 훅으로 구현
+useAuthFormHook 커스텀 훅으로 구현
 
 react-router
-
 
 react-query
 
@@ -14,7 +13,6 @@ redux-persist를 사용한 로그인 유지
 axios
 
 toast-ui를 이용한 마크다운 에디터
-
 
 tailwindcss
 

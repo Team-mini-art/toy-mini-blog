@@ -7,7 +7,7 @@ export interface GetPostRes {
   updatedDate: string;
 }
 
-export interface PostRes {
+export interface PostPutRes {
   status: string;
   message: string;
 }

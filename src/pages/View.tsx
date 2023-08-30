@@ -6,9 +6,10 @@ import Title from '../components/Title';
 
 import { useQuery } from 'react-query';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { deleteView, getView } from '../api/post';
-import formatDate from '../util/formatDate';
 import { useSelector } from 'react-redux';
+import { deleteView, getView } from '../api/post';
+
+import formatDate from '../util/formatDate';
 import { type RootState } from '../store/store';
 
 export default function View() {
@@ -21,7 +22,6 @@ export default function View() {
     'view',
     async () => await getView(pathName),
   );
-  console.log(data);
 
   if (isLoading) {
     return <span>Loading...</span>;

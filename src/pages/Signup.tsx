@@ -4,7 +4,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import { IoMdPersonAdd } from 'react-icons/io';
 
-import { useForm } from '../hooks/useFormHook';
+import { useAuthFormHook } from '../hooks/useAuthFormHook';
 
 import { useNavigate } from 'react-router-dom';
 import { postAuthSignup } from '../api/auth';
@@ -28,7 +28,7 @@ export default function Signup() {
   };
 
   const { handleSubmit, form, handleInputChange, error, errorMessage } =
-    useForm({
+    useAuthFormHook({
       initialValues: {
         nickname: '',
         email: '',
