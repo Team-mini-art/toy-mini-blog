@@ -10,41 +10,56 @@ import Button from '../components/Button';
 import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { createPosts, getView } from '../api/post';
+import { postView, getView, putView } from '../api/post';
 import { type RootState } from '../store/store';
-import { type PostRes } from '../types/postType';
+import { type PostPutRes } from '../types/postType';
 import { useQuery } from 'react-query';
 
-export default function PostUpdate() {
-  // const [title, setTitle] = useState('');
-  const { email } = useSelector((state: RootState) => state.auth.value);
-  const navigate = useNavigate();
+export default function PostForm() {
   const location = useLocation();
+  const isNew = location.pathname.includes('new');
   const pathName = location.pathname.split('/')[2];
+  const [title, setTitle] = useState('');
 
-  const { isLoading, data } = useQuery(
-    'view',
-    async () => await getView(pathName),
-  );
-
-  const [title, setTitle] = useState(data.title);
+  // API
+  const navigate = useNavigate();
 
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<Editor>(null);
   const contentEditor = contentRef.current?.getInstance();
 
+  const { email } = useSelector((state: RootState) => state.auth.value);
+
   const handleInputChange = async () => {
-    const result: PostRes = await createPosts({
+    const formData = {
       email,
       title,
       contents: contentEditor.getMarkdown(),
-    });
+    };
+    const result: PostPutRes = await (isNew
+      ? postView(formData)
+      : putView(pathName, formData));
+
     alert(`${result.message}`);
     navigate('/post');
   };
 
-  if (isLoading) {
-    return <span>Loading...</span>;
+  // Update
+  let data;
+  if (!isNew) {
+    const { isLoading, data: postData } = useQuery(
+      'view',
+      async () => await getView(pathName),
+    );
+
+    if (isLoading) {
+      return <span>Loading...</span>;
+    }
+
+    if (!title) {
+      setTitle(postData.title);
+    }
+    data = postData;
   }
 
   return (
@@ -68,7 +83,6 @@ export default function PostUpdate() {
           </Input>
           <label className="mt-5 pb-2 block text-gray-500">content</label>
           <Editor
-            /* height="40rem" */
             height="20rem"
             placeholder="Please Enter Text."
             previewStyle="vertical"
@@ -78,11 +92,13 @@ export default function PostUpdate() {
             useCommandShortcut={true}
             usageStatistics={false}
             ref={contentRef}
-            initialValue={data.contents}
+            initialValue={data?.contents}
             // theme="dark"
           />
           <div className="mt-10 flex justify-end">
-            <Button onClick={handleInputChange}>Click</Button>
+            <Button onClick={handleInputChange}>
+              {isNew ? 'Create' : 'Update'}
+            </Button>
           </div>
         </div>
       </form>

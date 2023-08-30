@@ -4,7 +4,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import { AiFillLock } from 'react-icons/ai';
 
-import { useForm } from '../hooks/useFormHook';
+import { useAuthFormHook } from '../hooks/useAuthFormHook';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { postAuthLogin } from '../api/auth';
@@ -29,7 +29,7 @@ export default function Login() {
   };
 
   const { handleSubmit, form, handleInputChange, error, errorMessage } =
-    useForm({
+    useAuthFormHook({
       initialValues: {
         email: '',
         password: '',

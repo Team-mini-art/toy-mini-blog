@@ -9,7 +9,7 @@ export const getPosts = async () => {
   }
 };
 
-export const createPosts = async (createForm: Record<string, string>) => {
+export const postView = async (createForm: Record<string, string>) => {
   try {
     const { data } = await axiosCustom.post('/api/posts', createForm);
     return data;

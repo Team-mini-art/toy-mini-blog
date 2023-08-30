@@ -10,7 +10,7 @@ interface useFormProps {
   onSuccess: (e: SignupRes | LoginRes) => void;
 }
 
-export function useForm({
+export function useAuthFormHook({
   initialValues,
   refs,
   onSubmit,
