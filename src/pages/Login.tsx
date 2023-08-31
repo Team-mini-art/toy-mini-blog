@@ -28,7 +28,7 @@ export default function Login() {
     password: passwordRef,
   };
 
-  const { handleSubmit, form, handleInputChange, error, errorMessage } =
+  const { form, handleInputChange, handleSubmit, error, errorMessage } =
     useAuthFormHook({
       initialValues: {
         email: '',

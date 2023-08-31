@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { type SignupRes, type LoginRes } from '../types/authType';
 import axios, { type AxiosError } from 'axios';
 
-interface useFormProps {
+interface useAuthFormProps {
   initialValues: Record<string, string>;
   refs: Record<string, React.RefObject<HTMLInputElement>>;
   onSubmit: () => Promise<SignupRes | LoginRes>;
@@ -16,7 +16,7 @@ export function useAuthFormHook({
   onSubmit,
   onErrors,
   onSuccess,
-}: useFormProps) {
+}: useAuthFormProps) {
   const [form, setForm] = useState(initialValues);
   const [error, setError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
