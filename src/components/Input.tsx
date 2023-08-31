@@ -1,4 +1,4 @@
-// import { type Editor } from '@toast-ui/react-editor';
+import { type Editor } from '@toast-ui/react-editor';
 
 interface Props {
   labelClass?: string;
@@ -9,7 +9,7 @@ interface Props {
   placeholder: string;
   children?: React.ReactNode;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  refs: Record<string, React.RefObject<HTMLInputElement>>;
+  refs: Record<string, React.RefObject<HTMLInputElement | Editor>>;
   error?: string;
 }
 
