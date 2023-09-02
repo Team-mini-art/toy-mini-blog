@@ -24,6 +24,7 @@ export function useAuthFormHook({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+    if (error !== '') setError('');
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

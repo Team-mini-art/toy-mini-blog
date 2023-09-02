@@ -21,7 +21,7 @@
   }
 
   .input-error {
-    @apply outline-1 outline-yellow-400;
+    @apply outline-1 !outline-red-300;
   }
 
   .button-hover {

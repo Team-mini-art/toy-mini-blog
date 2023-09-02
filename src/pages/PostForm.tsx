@@ -5,29 +5,55 @@ import { Editor } from '@toast-ui/react-editor';
 import Title from '../components/Title';
 import Input from '../components/Input';
 import Button from '../components/Button';
+
+import { postView } from '../api/post';
+
+import { useEffect, useRef } from 'react';
 import { usePostFromHook } from '../hooks/usePostFromHook';
-import { useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { type RootState } from '../store/store';
+import { type PostPutRes } from '../types/postType';
+import { type ErrorMessage } from '../types/errorType';
 
 export default function PostForm() {
+  const navigate = useNavigate();
+
+  const { email } = useSelector((state: RootState) => state.auth.value);
+
   const titleRef = useRef<HTMLInputElement>(null);
-  const contentRef = useRef<Editor>(null);
-  // const contentEditor = contentRef.current?.getInstance();
+  const contenstRef = useRef<Editor>(null);
 
   const refs: Record<string, React.RefObject<HTMLInputElement | Editor>> = {
     title: titleRef,
-    content: contentRef,
+    contents: contenstRef,
   };
 
-  const { form, handleInputChange, handleSubmit } = usePostFromHook({
+  const { form, handleInputChange, handleSubmit, error } = usePostFromHook({
     initialValues: {
       title: '',
-      content: '',
+      contents: '',
     },
     refs,
-    onSubmit: async () => {},
-    onErrors: async () => {},
-    onSuccess: async () => {},
+    onSubmit: async (): Promise<PostPutRes> => {
+      const result = await postView({ email, ...form });
+      return result;
+    },
+    onErrors: (e) => {
+      const { message } = e.response?.data as ErrorMessage;
+      alert(message);
+    },
+    onSuccess: (e: PostPutRes) => {
+      const { message } = e;
+      alert(`${message}`);
+      navigate('/post');
+    },
   });
+
+  useEffect(() => {
+    (refs.title.current as HTMLInputElement)?.focus();
+  }, []);
 
   return (
     <>
@@ -36,12 +62,12 @@ export default function PostForm() {
         <div className="py-12">
           <Input
             inputClass="border-gray-300"
-            name="email"
+            name="title"
             value={form.title}
             placeholder="Enter Title"
             onChange={handleInputChange}
             refs={refs}
-            // error={error}
+            error={error}
           >
             Title
           </Input>
@@ -53,9 +79,13 @@ export default function PostForm() {
             previewHighlight={false}
             initialEditType="markdown"
             hideModeSwitch={true}
+            autofocus={false}
             useCommandShortcut={true}
             usageStatistics={false}
-            ref={contentRef}
+            ref={contenstRef}
+            onChange={() => {
+              handleInputChange(contenstRef);
+            }}
             // initialValue={data?.contents}
             // theme="dark"
           />
@@ -82,21 +112,8 @@ export default function PostForm() {
 //
 //
 //
-// Toast UI Editor
-// import '@toast-ui/editor/dist/toastui-editor.css';
-// import { Editor } from '@toast-ui/react-editor';
-// // import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
-
-// import Input from '../components/Input';
-// import Title from '../components/Title';
-// import Button from '../components/Button';
-
 // import { useRef, useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { useNavigate, useLocation } from 'react-router-dom';
-// import { postView, getView, putView } from '../api/post';
-// import { type RootState } from '../store/store';
-// import { type PostPutRes } from '../types/postType';
+
 // import { useQuery } from 'react-query';
 
 // export default function PostForm() {
@@ -106,27 +123,9 @@ export default function PostForm() {
 //   const [title, setTitle] = useState('');
 
 //   // API
-//   const navigate = useNavigate();
-
 //   const titleRef = useRef<HTMLInputElement>(null);
-//   const contentRef = useRef<Editor>(null);
-//   const contentEditor = contentRef.current?.getInstance();
-
-//   const { email } = useSelector((state: RootState) => state.auth.value);
-
-//   const handleInputChange = async () => {
-//     const formData = {
-//       email,
-//       title,
-//       contents: contentEditor.getMarkdown(),
-//     };
-//     const result: PostPutRes = await (isNew
-//       ? postView(formData)
-//       : putView(pathName, formData));
-
-//     alert(`${result.message}`);
-//     navigate('/post');
-//   };
+//   const contenstRef = useRef<Editor>(null);
+//   const contentEditor = contenstRef.current?.getInstance();
 
 //   // Update
 //   let data;
@@ -175,7 +174,7 @@ export default function PostForm() {
 //             hideModeSwitch={true}
 //             useCommandShortcut={true}
 //             usageStatistics={false}
-//             ref={contentRef}
+//             ref={contenstRef}
 //             initialValue={data?.contents}
 //             // theme="dark"
 //           />

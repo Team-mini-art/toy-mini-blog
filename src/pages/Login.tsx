@@ -51,7 +51,6 @@ export default function Login() {
         } = e as LoginRes;
         alert(`${e.message}`);
         dispatch(login({ nickname, email, accessToken, refreshToken }));
-        // TODO navigate
         navigate('/');
       },
     });
