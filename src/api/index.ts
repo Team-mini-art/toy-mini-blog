@@ -46,7 +46,7 @@ instance.interceptors.response.use(
       },
     } = error;
 
-    if (status === '401') {
+    if (status === 401) {
       if (message === 'access_token_expired') {
         const { newAccessToken } = (await postAuthRefresh()) as {
           newAccessToken: string;
