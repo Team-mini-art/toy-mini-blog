@@ -15,7 +15,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 import { type RootState } from '../store/store';
-import { type PostPutRes } from '../types/postType';
+import { type GetPostRes, type PostPutRes } from '../types/postType';
 import { type ErrorMessage } from '../types/errorType';
 
 export default function PostForm() {
@@ -63,7 +63,7 @@ export default function PostForm() {
   }, []);
 
   // Update
-  let data;
+  let data: GetPostRes | undefined;
   if (!isNew) {
     const { data: postData } = useQuery(
       'view',
@@ -81,7 +81,7 @@ export default function PostForm() {
   return (
     <>
       <Title title="New Post" />
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className="py-12">
           <Input
             inputClass="border-gray-300"
@@ -112,9 +112,7 @@ export default function PostForm() {
             // theme="dark"
           />
           <div className="mt-10 flex justify-end">
-            <Button onClick={handleSubmit}>
-              {isNew ? 'Create' : 'Update'}
-            </Button>
+            <Button type="submit">{isNew ? 'Create' : 'Update'}</Button>
           </div>
         </div>
       </form>
