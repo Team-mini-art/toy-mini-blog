@@ -58,10 +58,16 @@ export function usePostFromHook({
     }
   };
 
+  const updateInitialValues = (e) => {
+    refs.contents.current?.getInstance().setMarkdown(e.contents);
+    setForm(e);
+  };
+
   return {
     form,
     handleInputChange,
     handleSubmit,
     error,
+    updateInitialValues,
   };
 }
