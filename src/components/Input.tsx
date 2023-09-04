@@ -43,7 +43,7 @@ export default function Input({
         value={value}
         placeholder={placeholder}
         onChange={onChange}
-        ref={refs[name]}
+        ref={refs[name] as React.RefObject<HTMLInputElement>}
       />
     </>
   );
