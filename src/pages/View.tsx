@@ -19,7 +19,7 @@ export default function View() {
   const { isLoggedIn } = useSelector((state: RootState) => state.auth.value);
 
   const { isLoading, data } = useQuery(
-    'view',
+    `view${pathName}`,
     async () => await getView(pathName),
   );
 

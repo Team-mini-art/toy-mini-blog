@@ -66,7 +66,7 @@ export default function PostForm() {
   let data: GetPostRes | undefined;
   if (!isNew) {
     const { data: postData } = useQuery(
-      'view',
+      `form${pathName}`,
       async () => await getView(pathName),
     );
     data = postData;
