@@ -42,15 +42,32 @@ export default function View() {
   const formattedDate = formatDate(data.createdDate);
   return (
     <>
-      <Title subtitle={data.title} description={formattedDate} />
+      <div className="flex justify-between items-end pb-8 pt-6 border-gray-200 border-b">
+        <Title subtitle={data.title} description={formattedDate} posttitle />
+        <div className="flex gap-5">
+          <Link to={`/modify/${pathName}`} className="button-hover">
+            Modify
+          </Link>
+          <button onClick={handleDelete} className="button-hover">
+            Delete
+          </button>
+        </div>
+      </div>
       <Viewer initialValue={data.contents} />
-      <div className="mt-40 pt-10 flex justify-end gap-5 border-t border-gray-200">
-        <Link to={`/modify/${pathName}`} className="button-hover">
-          Modify
-        </Link>
-        <button onClick={handleDelete} className="button-hover">
-          Delete
-        </button>
+      <div
+        className="mt-40 pb-6 pt-6 text-center button-hover border-t border-gray-200"
+        id="comment"
+      >
+        <button>Load Comments</button>
+      </div>
+      <div className="mt-40">
+        <h1>댓글</h1>
+        email
+        <br />
+        nickname
+        <br />
+        contents
+        <br />
       </div>
     </>
   );
