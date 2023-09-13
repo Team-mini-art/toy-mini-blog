@@ -3,6 +3,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Viewer } from '@toast-ui/react-editor';
 
 import Title from '../components/Title';
+import Button from '../components/Button';
 
 import { useQuery } from 'react-query';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
@@ -55,19 +56,44 @@ export default function View() {
       </div>
       <Viewer initialValue={data.contents} />
       <div
-        className="mt-40 pb-6 pt-6 text-center button-hover border-t border-gray-200"
+        className="mt-40 p-6 text-center button-hover border-t border-gray-200"
         id="comment"
       >
         <button>Load Comments</button>
       </div>
       <div className="mt-40">
-        <h1>댓글</h1>
-        email
+        <strong className="font-bold">4 comments</strong>
+        <div className="mt-4">
+          <textarea
+            className="input-basic"
+            placeholder="Leave a comment"
+          ></textarea>
+          <div className="mt-4 flex justify-end">
+            <Button>Comment</Button>
+          </div>
+
+          <div className="p-6 border-t border-gray-200">
+            <div className="flex justify-between">
+              <div className="flex flex-col">
+                <strong className="font-bold text-gray-400">yezi</strong>
+                <time className="text-sm text-gray-400">September 4, 2023</time>
+              </div>
+              <div className="flex gap-2">
+                <button className="button-hover text-sm">Edit</button>
+                <button className="button-hover text-sm">Delete</button>
+              </div>
+            </div>
+            <p className="mt-4">
+              이렇게 유용한 정보를 공유해주셔서 감사합니다.
+            </p>
+          </div>
+        </div>
+        {/* email
         <br />
         nickname
         <br />
         contents
-        <br />
+        <br /> */}
       </div>
     </>
   );
