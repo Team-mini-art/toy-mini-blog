@@ -88,12 +88,6 @@ export default function View() {
             </p>
           </div>
         </div>
-        {/* email
-        <br />
-        nickname
-        <br />
-        contents
-        <br /> */}
       </div>
     </>
   );
