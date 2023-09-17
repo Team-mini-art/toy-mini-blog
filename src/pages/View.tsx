@@ -83,9 +83,7 @@ export default function View() {
                 <button className="button-hover text-sm">Delete</button>
               </div>
             </div>
-            <p className="mt-4">
-              이렇게 유용한 정보를 공유해주셔서 감사합니다.
-            </p>
+            <p className="mt-4">안녕하세요 댓글입니다.</p>
           </div>
         </div>
       </div>
