@@ -3,7 +3,6 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Viewer } from '@toast-ui/react-editor';
 
 import Title from '../components/Title';
-import Button from '../components/Button';
 
 import { useQuery } from 'react-query';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
@@ -12,6 +11,7 @@ import { deleteView, getView } from '../api/post';
 
 import formatDate from '../util/formatDate';
 import { type RootState } from '../store/store';
+import Comment from '../components/Comment';
 
 export default function View() {
   const location = useLocation();
@@ -61,32 +61,7 @@ export default function View() {
       >
         <button>Load Comments</button>
       </div>
-      <div className="mt-40">
-        <strong className="font-bold">4 comments</strong>
-        <div className="mt-4">
-          <textarea
-            className="input-basic"
-            placeholder="Leave a comment"
-          ></textarea>
-          <div className="mt-4 flex justify-end">
-            <Button>Comment</Button>
-          </div>
-
-          <div className="p-6 border-t border-gray-200">
-            <div className="flex justify-between">
-              <div className="flex flex-col">
-                <strong className="font-bold text-gray-400">yezi</strong>
-                <time className="text-sm text-gray-400">September 4, 2023</time>
-              </div>
-              <div className="flex gap-2">
-                <button className="button-hover text-sm">Edit</button>
-                <button className="button-hover text-sm">Delete</button>
-              </div>
-            </div>
-            <p className="mt-4">안녕하세요 댓글입니다.</p>
-          </div>
-        </div>
-      </div>
+      <Comment />
     </>
   );
 }
