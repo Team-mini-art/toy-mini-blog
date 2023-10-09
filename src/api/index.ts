@@ -3,8 +3,7 @@ import store from '../store/store';
 import { postAuthRefresh } from './auth';
 import { login, logout } from '../store/features/authSlice';
 
-const BASE_URL = 'http://localhost:8081';
-// const BASE_URL = '';
+const BASE_URL = 'http://54.180.91.118:8081';
 
 const instance = axios.create({
   baseURL: `${BASE_URL}`,
