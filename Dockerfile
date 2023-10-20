@@ -9,11 +9,11 @@ COPY . .
 RUN yarn build
 
 RUN echo "PATH Check01"
-RUN PWD
+RUN pwd
 RUN ls
 
 RUN echo "PATH Check02"
-RUN PWD
+RUN pwd
 RUN ls /app
 
 # production stage
