@@ -2,7 +2,6 @@
 FROM node:18 as build-stage
 WORKDIR /app
 COPY package*.json ./
-RUN npm install -g yarn  # Yarn 설치
 RUN yarn install  # Yarn으로 패키지 설치
 COPY . .
 RUN npm run build
