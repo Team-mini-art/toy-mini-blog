@@ -8,6 +8,14 @@ RUN yarn install
 COPY . .
 RUN yarn build
 
+ECHO PATH Check01
+RUN PWD
+RUN ls
+
+ECHO PATH Check02
+RUN PWD
+RUN ls /app
+
 # production stage
 FROM nginx:stable-alpine as production-stage
 COPY --from=build-stage /app/build /usr/share/nginx/html
