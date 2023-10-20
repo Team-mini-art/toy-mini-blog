@@ -9,12 +9,16 @@ COPY . .
 RUN yarn build
 
 RUN echo "PATH Check01"
-RUN pwd
 RUN ls
+RUN pwd
 
 RUN echo "PATH Check02"
-RUN pwd
 RUN ls /app
+RUN pwd
+
+RUN echo "PATH Check03"
+RUN ls /app/dist
+RUN pwd
 
 # production stage
 FROM nginx:stable-alpine as production-stage
