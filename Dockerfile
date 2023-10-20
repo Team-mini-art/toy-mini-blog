@@ -8,11 +8,11 @@ RUN yarn install
 COPY . .
 RUN yarn build
 
-ECHO PATH Check01
+RUN echo "PATH Check01"
 RUN PWD
 RUN ls
 
-ECHO PATH Check02
+RUN echo "PATH Check02"
 RUN PWD
 RUN ls /app
 
