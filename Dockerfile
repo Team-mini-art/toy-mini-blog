@@ -2,9 +2,11 @@
 FROM node:18 as build-stage
 WORKDIR /app
 COPY package*.json ./
-RUN yarn install  # Yarn으로 패키지 설치
+
+# Yarn is already installed
+RUN yarn install
 COPY . .
-RUN npm run build
+RUN yarn build
 
 # production stage
 FROM nginx:stable-alpine as production-stage
