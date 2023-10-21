@@ -27,7 +27,7 @@ export default function Post() {
           New Post
         </button>
       </div>
-      <List posts={data} />
+      <List posts={data?.posts} />
       {/* <Pagination /> */}
     </main>
   );

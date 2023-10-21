@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 
 export default function Home() {
   const { data } = useQuery('posts', getPosts);
-  const LatestPosts = data ? data.slice(-3) : [];
+  const LatestPosts = data?.posts ? data?.posts?.slice(-3) : [];
 
   return (
     <main>
