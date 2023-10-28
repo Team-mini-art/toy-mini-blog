@@ -15,7 +15,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 import { type RootState } from '../store/store';
-import { type GetPostRes, type PostPutRes } from '../types/postType';
+import { type Post, type PostPutRes } from '../types/postType';
 import { type ErrorMessage } from '../types/errorType';
 
 export default function PostForm() {
@@ -63,7 +63,7 @@ export default function PostForm() {
   }, []);
 
   // Update
-  let data: GetPostRes | undefined;
+  let data: Post | undefined;
   if (!isNew) {
     const { data: postData } = useQuery(
       `form${pathName}`,
