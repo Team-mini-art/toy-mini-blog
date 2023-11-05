@@ -1,15 +1,25 @@
 import axiosCustom from './index';
 import store from '../store/store';
 
-export const postAuthSignup = async (signupForm: Record<string, string>) => {
+export const postAuthSignup = async (
+  signupForm: Record<string, string>,
+  // file: File,
+) => {
   try {
-    const { data } = await axiosCustom.post('/api/signup', signupForm, {
+    const formData = new FormData();
+    // formData.append('file', file);
+    formData.append(
+      'data',
+      new Blob([JSON.stringify(signupForm)], { type: 'application/json' }),
+    );
+    const { data } = await axiosCustom.post('/api/signup', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
     return data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
