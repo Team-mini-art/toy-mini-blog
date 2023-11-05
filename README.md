@@ -4,11 +4,15 @@
 
 </div>
 
+<br/>
 <div align="center">
     <img src="https://github.com/art11010/coding-test/assets/49858735/80515df3-66b2-4331-98bc-b4c9407ba410" width="60%">
 </div>
+<br/>
 
 ---
+
+<br/>
 
 ## Meaning
 
