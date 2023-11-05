@@ -3,7 +3,11 @@ import store from '../store/store';
 
 export const postAuthSignup = async (signupForm: Record<string, string>) => {
   try {
-    const { data } = await axiosCustom.post('/api/signup', signupForm);
+    const { data } = await axiosCustom.post('/api/signup', signupForm, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return data;
   } catch (error) {
     throw error;
