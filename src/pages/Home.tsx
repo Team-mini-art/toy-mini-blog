@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main>
       {/* <Title title="Latest" description="latest posts from all users." /> */}
-      <Title title="Latest" />
+      <Title title="Latest" description="Welcome to MiniBlog" />
       <List posts={LatestPosts} />
       <div className="mt-5 flex justify-end">
         <Link
