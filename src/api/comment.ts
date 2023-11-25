@@ -1,6 +1,6 @@
 import axiosCustom from './index';
 
-export const getPosts = async () => {
+export const getComments = async () => {
   try {
     const { data } = await axiosCustom.get('/api/comments');
     return data;

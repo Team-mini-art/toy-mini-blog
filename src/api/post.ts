@@ -2,8 +2,10 @@ import axiosCustom from './index';
 
 export const getPosts = async () => {
   try {
-    const { data } = await axiosCustom.get('/api/posts');
-    // const { data } = await axiosCustom.get('/api/posts?sort=createdDate&direction=desc');
+    // const { data } = await axiosCustom.get('/api/posts');
+    const { data } = await axiosCustom.get(
+      '/api/posts?sort=createdDate&direction=desc',
+    );
     return data;
   } catch (error) {
     throw error;
